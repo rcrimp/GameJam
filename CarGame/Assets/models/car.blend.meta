@@ -19,6 +19,10 @@ ModelImporter:
     100022: WheelHub
     100024: WheelTyre
     100026: Collider
+    100028: Body_001
+    100030: Body_002
+    100032: Body_003
+    100034: Body_004
     400000: Body
     400002: //RootNode
     400004: ControlAccelerate
@@ -33,6 +37,10 @@ ModelImporter:
     400022: WheelHub
     400024: WheelTyre
     400026: Collider
+    400028: Body_001
+    400030: Body_002
+    400032: Body_003
+    400034: Body_004
     2300000: Body
     2300002: ControlAccelerate
     2300004: ControlBrake
@@ -46,6 +54,10 @@ ModelImporter:
     2300020: WheelHub
     2300022: WheelTyre
     2300024: Collider
+    2300026: Body_001
+    2300028: Body_002
+    2300030: Body_003
+    2300032: Body_004
     3300000: Body
     3300002: ControlAccelerate
     3300004: ControlBrake
@@ -59,6 +71,10 @@ ModelImporter:
     3300020: WheelHub
     3300022: WheelTyre
     3300024: Collider
+    3300026: Body_001
+    3300028: Body_002
+    3300030: Body_003
+    3300032: Body_004
     4300000: WheelTyre
     4300002: Body
     4300004: Engine
@@ -72,6 +88,10 @@ ModelImporter:
     4300020: DoorLeft
     4300022: DoorRight
     4300024: Collider
+    4300026: Body_004
+    4300028: Body_003
+    4300030: Body_002
+    4300032: Body_001
     7400000: Default Take
     9500000: //RootNode
   materials:
