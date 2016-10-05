@@ -8,41 +8,79 @@ namespace CarGame
 {
     public class FindPowerUp : AIState
     {
-        public FindPowerUp(AIBattleMode ai, CarDriving car)
-            : base(ai, car)
-        {
+        // The powerup this ai is moving towards
+        private GameObject targetPowerUp;
 
-        }
+        public FindPowerUp(AIBattleMode ai, CarDriving car)
+            : base(ai, car) { /* Nothing */ }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            // If has a power-up, change to hunt enemy mode
-            // Else,
-            // Locate closest power-up
-            // Calculate path
-            // Move to it's position
-
-            // Get all powerups in the scene
-            GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
-            if (powerups.Length > 0)
+            // Find the closest powerup and move towards it when a path has been calculated
+            bool powerupFound = MoveToClosestPowerup();
+            if (powerupFound == false)
             {
-                // Order powerups by distance to this car
-                powerups.OrderBy(p => Vector3.Distance(car.transform.position, p.transform.position));
-
-                // Target the closest powerup
-                GameObject targetPowerup = powerups[0];
-
-                // Begin calculating path to closest powerup
-                ai.Pathfinder.FindPath(targetPowerup.transform.position);
-                ai.Pathfinder.PathFound += Pathfinder_PathFound;
+                // Switch to evasive manoeuvres until a powerup is available
             }
         }
 
-        private void Pathfinder_PathFound(object sender, PathfinderEventArgs e)
+        /// <summary>
+        /// Finds the closest powerup in the scene. Closest by ABSOLUTE distance, not by PATH distance. Returns null
+        /// if there are no available powerups in the scene.
+        /// </summary>
+        private GameObject FindClosestPowerup()
         {
-            ai.FollowPath(e.Path);
+            // Get all powerups in the scene
+            GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
+            if (powerups.Length == 0)
+                return null;
+
+            // Order powerups by distance to this car
+            powerups.OrderBy(p => Vector3.Distance(car.transform.position, p.transform.position));
+
+            // Return the closest powerup
+            return powerups[0];
+        }
+
+        /// <summary>
+        /// Calculates a path to the closest powerup in the scene. 
+        /// </summary>
+        private bool MoveToClosestPowerup()
+        {
+            // Get closest powerup
+            GameObject closestPowerup = FindClosestPowerup();
+
+            // No powerup found
+            if (closestPowerup == null)
+                return false;
+
+            // Set closest powerup as target
+            targetPowerUp = closestPowerup;
+
+            // Calculate path to the closets powerup
+            NavMeshPath path = new NavMeshPath();
+            NavMesh.CalculatePath(car.transform.position, closestPowerup.transform.position, NavMesh.AllAreas, path);
+
+            // Follow path
+            ai.FollowPath(path.corners);
+
+            // Powerup has been found successfully
+            return true;
+        }
+
+        private void Powerup_PickedUp(object sender, EventArgs e)
+        {
+            // Target no longer valid, delete reference
+            targetPowerUp = null;
+
+            // Find a difference target
+            bool powerupFound = MoveToClosestPowerup();
+            if (powerupFound == false)      // No powerups available...
+            {
+                // Switch to evasive manoeuvres until a powerup is available
+            }
         }
     }
 }

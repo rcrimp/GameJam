@@ -19,7 +19,10 @@ namespace CarGame
 
         public void FollowPath(Vector3[] path)
         {
-
+            // foreach point in path
+            // orient towards
+            // move towards
+            //
         }
 
         /*
