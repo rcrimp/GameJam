@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CarDriving : MonoBehaviour
 {
+    public float RotateSpeed = 50;
+    public float Speed = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +31,7 @@ public class CarDriving : MonoBehaviour
 
     }
 
-    public void Break()
+    public void Brake()
     {
 
     }
