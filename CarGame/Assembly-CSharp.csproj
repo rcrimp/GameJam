@@ -47,6 +47,9 @@
   <ItemGroup>
      <Compile Include="Assets\CarDriving.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
+     <None Include="Assets\New Folder\environmental assets\Lava\Sources\Shaders\Lava.shader" />
+     <None Include="Assets\Standard Assets\Water (Pro Only)\Water3\Sources\Shaders\FX-Water3.shader" />
+     <None Include="Assets\Standard Assets\LavaPackage\Sources\Lava.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
