@@ -67,7 +67,9 @@
   <ItemGroup>
     <Compile Include="Assets\AIBattleMode.cs" />
     <Compile Include="Assets\AIState\AIState.cs" />
+    <Compile Include="Assets\AIState\EvasiveManoeuvres.cs" />
     <Compile Include="Assets\AIState\FindPowerUp.cs" />
+    <Compile Include="Assets\AIState\HuntEnemy.cs" />
     <Compile Include="Assets\CarDriving.cs" />
     <Compile Include="Assets\MathExtension.cs" />
   </ItemGroup>
