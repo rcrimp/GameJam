@@ -1,48 +1,83 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class CarDriving : MonoBehaviour {
+public class CarController : MonoBehaviour {
+    private float inputVer = 0;
+    private float inputHor = 0;
 
-    private float speed;
-    private Vector3 direction;
-    private bool upbool = false;
-    public void Brake() {
-        speed = 0;
+    public void updateInput(float steering, float gas) {
+        inputVer = gas;
+        inputHor = steering;
     }
 
-    public void Accelerate() {
-        speed = 50;
+    public float idealRPM = 500f;
+    public float maxRPM = 1000f;
+
+    public Transform centerOfGravity;
+
+    public WheelCollider wheelFR;
+    public WheelCollider wheelFL;
+    public WheelCollider wheelRR;
+    public WheelCollider wheelRL;
+
+    public float turnRadius = 6f;
+    public float torque = 25f;
+    public float brakeTorque = 100f;
+
+    public float AntiRoll = 20000.0f;
+
+    public enum DriveMode { Front, Rear, All };
+    public DriveMode driveMode = DriveMode.Rear;
+
+    void Start() {
+        GetComponent<Rigidbody>().centerOfMass = centerOfGravity.localPosition;
     }
 
-    public void SteerLeft() {
-        direction = Quaternion.AngleAxis(3, Vector3.up) * direction;
+    void FixedUpdate() {
+        //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
+
+        float scaledTorque = inputVer * torque;
+
+        if (wheelRL.rpm < idealRPM)
+            scaledTorque = Mathf.Lerp(scaledTorque / 10f, scaledTorque, wheelRL.rpm / idealRPM);
+        else
+            scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
+
+        DoRollBar(wheelFR, wheelFL);
+        DoRollBar(wheelRR, wheelRL);
+
+        wheelFR.steerAngle = inputHor * turnRadius;
+        wheelFL.steerAngle = inputHor * turnRadius;
+
+        wheelFR.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
+        wheelFL.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
+        wheelRR.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
+        wheelRL.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
     }
 
-    public void SteerRight() {
-        direction = Quaternion.AngleAxis(-3, Vector3.up) * direction;
+
+    void DoRollBar(WheelCollider WheelL, WheelCollider WheelR)
+    {
+        WheelHit hit;
+        float travelL = 1.0f;
+        float travelR = 1.0f;
+
+        bool groundedL = WheelL.GetGroundHit(out hit);
+        if (groundedL)
+            travelL = (-WheelL.transform.InverseTransformPoint(hit.point).y - WheelL.radius) / WheelL.suspensionDistance;
+
+        bool groundedR = WheelR.GetGroundHit(out hit);
+        if (groundedR)
+            travelR = (-WheelR.transform.InverseTransformPoint(hit.point).y - WheelR.radius) / WheelR.suspensionDistance;
+
+        float antiRollForce = (travelL - travelR) * AntiRoll;
+
+        if (groundedL)
+            GetComponent<Rigidbody>().AddForceAtPosition(WheelL.transform.up * -antiRollForce,
+                                         WheelL.transform.position);
+        if (groundedR)
+            GetComponent<Rigidbody>().AddForceAtPosition(WheelR.transform.up * antiRollForce,
+                                         WheelR.transform.position);
     }
-    public void up() {
-        upbool = true;
-    }
-
-	// Use this for initialization
-	void Start () {
-        speed = 0;
-        direction = new Vector3(0, 0, 1); // z forward
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Vector3 pos = transform.position;
-        pos += direction * (speed * Time.deltaTime);
-
-        transform.rotation = Quaternion.LookRotation(direction.normalized);
-
-        if (upbool)
-        {
-            pos.y++;
-            upbool = false;
-        }
-        transform.position = pos;
-	}
 }

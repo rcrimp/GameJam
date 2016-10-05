@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 7cd1158953b9b80488e06c949b06be57
+timeCreated: 1475675804
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: //RootNode
+    100004: ControlAccelerate
+    100006: ControlBrake
+    100008: ControlDial
+    100010: ControlSteering
+    100012: DoorHood
+    100014: DoorLeft
+    100016: DoorRight
+    100018: DoorTrunk
+    100020: Engine
+    100022: WheelHub
+    100024: WheelTyre
+    100026: Collider
+    400000: Body
+    400002: //RootNode
+    400004: ControlAccelerate
+    400006: ControlBrake
+    400008: ControlDial
+    400010: ControlSteering
+    400012: DoorHood
+    400014: DoorLeft
+    400016: DoorRight
+    400018: DoorTrunk
+    400020: Engine
+    400022: WheelHub
+    400024: WheelTyre
+    400026: Collider
+    2300000: Body
+    2300002: ControlAccelerate
+    2300004: ControlBrake
+    2300006: ControlDial
+    2300008: ControlSteering
+    2300010: DoorHood
+    2300012: DoorLeft
+    2300014: DoorRight
+    2300016: DoorTrunk
+    2300018: Engine
+    2300020: WheelHub
+    2300022: WheelTyre
+    2300024: Collider
+    3300000: Body
+    3300002: ControlAccelerate
+    3300004: ControlBrake
+    3300006: ControlDial
+    3300008: ControlSteering
+    3300010: DoorHood
+    3300012: DoorLeft
+    3300014: DoorRight
+    3300016: DoorTrunk
+    3300018: Engine
+    3300020: WheelHub
+    3300022: WheelTyre
+    3300024: Collider
+    4300000: WheelTyre
+    4300002: Body
+    4300004: Engine
+    4300006: ControlBrake
+    4300008: ControlAccelerate
+    4300010: ControlDial
+    4300012: WheelHub
+    4300014: ControlSteering
+    4300016: DoorTrunk
+    4300018: DoorHood
+    4300020: DoorLeft
+    4300022: DoorRight
+    4300024: Collider
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
