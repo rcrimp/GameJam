@@ -18,11 +18,8 @@ namespace CarGame
 
             // Find the closest powerup and move towards it when a path has been calculated
             bool powerupFound = MoveToClosestPowerup();
-            if (powerupFound == false)
-            {
-                // Switch to evasive manoeuvres until a powerup is available
-                
-            }
+            if (powerupFound == false)  // Switch to evasive manoeuvres until a powerup is available
+                ai.SetState(new EvasiveManoeuvres(ai, car));
         }
 
         /// <summary>
@@ -87,10 +84,8 @@ namespace CarGame
 
             // Find a difference target
             bool powerupFound = MoveToClosestPowerup();
-            if (powerupFound == false)      // No powerups available...
-            {
-                // Switch to evasive manoeuvres until a powerup is available
-            }
+            if (powerupFound == false)      // No powerups available... Switch to evasive manoeuvres until a powerup is available
+                ai.SetState(new EvasiveManoeuvres(ai, car));
         }
     }
 }

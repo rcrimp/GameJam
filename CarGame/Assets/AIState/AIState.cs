@@ -15,6 +15,8 @@ namespace CarGame
         {
             this.ai = ai;
             this.car = car;
+
+            Debug.Log(GetType().ToString());
         }
 
         /// <summary>

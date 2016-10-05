@@ -9,5 +9,7 @@ namespace CarGame
     {
         public EvasiveManoeuvres(AIBattleMode ai, CarDriving car)
             : base(ai, car) { /* Nothing */ }
+
+        // Try to keep a certain distance away from enemies
     }
 }
