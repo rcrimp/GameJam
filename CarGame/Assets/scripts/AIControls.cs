@@ -11,6 +11,7 @@ public class AIControls : MonoBehaviour
 
     private CarController car;
     private Transform carTrans;
+    private Vector3 target;
 
     void Awake()
     {
@@ -29,7 +30,22 @@ public class AIControls : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
                 GoTo(hitInfo.point);
+                target = hitInfo.point;
             }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (carTrans != null)
+        {
+            Vector3 from = carTrans.position;
+            from.y += 0.5f;
+
+            Vector3 to = target;
+            to.y += 0.5f;
+
+            Gizmos.DrawLine(from, to);
         }
     }
 
