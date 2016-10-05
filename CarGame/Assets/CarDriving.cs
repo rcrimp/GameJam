@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarDriving : MonoBehaviour {
+public class CarDriving : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
@@ -12,4 +13,24 @@ public class CarDriving : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void TurnLeft()
+    {
+
+    }
+
+    public void TurnRight()
+    {
+
+    }
+
+    public void Accelerate()
+    {
+
+    }
+
+    public void Break()
+    {
+
+    }
 }

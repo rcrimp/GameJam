@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace CarGame
@@ -23,6 +21,7 @@ namespace CarGame
             if (powerupFound == false)
             {
                 // Switch to evasive manoeuvres until a powerup is available
+                
             }
         }
 
@@ -64,13 +63,24 @@ namespace CarGame
             NavMesh.CalculatePath(car.transform.position, closestPowerup.transform.position, NavMesh.AllAreas, path);
 
             // Follow path
-            ai.FollowPath(path.corners);
+            ai.SetPath(path.corners);
 
             // Powerup has been found successfully
             return true;
         }
 
+        /// <summary>
+        /// Event raised when THIS car picks up a powerup
+        /// </summary>
         private void Powerup_PickedUp(object sender, EventArgs e)
+        {
+            // Switch to hunt enemies mode
+        }
+
+        /// <summary>
+        /// Event raised when the powerup targeted by this ai is removed (picked up by another car, destroyed etc)
+        /// </summary>
+        private void Powerup_Removed(object sender, EventArgs e)
         {
             // Target no longer valid, delete reference
             targetPowerUp = null;

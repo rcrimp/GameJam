@@ -69,7 +69,7 @@
     <Compile Include="Assets\AIState\AIState.cs" />
     <Compile Include="Assets\AIState\FindPowerUp.cs" />
     <Compile Include="Assets\CarDriving.cs" />
-    <Compile Include="Assets\Pathfinder.cs" />
+    <Compile Include="Assets\MathExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
