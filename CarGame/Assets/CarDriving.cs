@@ -5,13 +5,13 @@ public class CarDriving : MonoBehaviour {
 
     private float speed;
     private Vector3 direction;
-
+    private bool upbool = false;
     public void Brake() {
         speed = 0;
     }
 
     public void Accelerate() {
-        speed = 2;
+        speed = 50;
     }
 
     public void SteerLeft() {
@@ -20,6 +20,9 @@ public class CarDriving : MonoBehaviour {
 
     public void SteerRight() {
         direction = Quaternion.AngleAxis(-3, Vector3.up) * direction;
+    }
+    public void up() {
+        upbool = true;
     }
 
 	// Use this for initialization
@@ -35,6 +38,11 @@ public class CarDriving : MonoBehaviour {
 
         transform.rotation = Quaternion.LookRotation(direction.normalized);
 
+        if (upbool)
+        {
+            pos.y++;
+            upbool = false;
+        }
         transform.position = pos;
 	}
 }

@@ -17,6 +17,7 @@ public class PlayerControls : MonoBehaviour {
             float steer = Input.GetAxis("Horizontal");
             float accelerate = Input.GetAxis("Vertical");
 
+            if (Input.GetKeyDown("space")) car.up();
             // call car controller methods
             if (steer > 0) car.SteerLeft();
             if (steer < 0) car.SteerRight();
