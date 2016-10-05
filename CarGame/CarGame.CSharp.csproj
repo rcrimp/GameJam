@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\AIBattleMode.cs" />
+    <Compile Include="Assets\scripts\AIControls.cs" />
     <Compile Include="Assets\scripts\AIState\AIState.cs" />
     <Compile Include="Assets\scripts\AIState\EvasiveManoeuvres.cs" />
     <Compile Include="Assets\scripts\AIState\FindPowerUp.cs" />

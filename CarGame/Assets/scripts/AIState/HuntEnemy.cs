@@ -7,7 +7,7 @@ namespace CarGame
 {
     public class HuntEnemy : AIState
     {
-        public HuntEnemy(AIBattleMode ai, CarDriving car)
+        public HuntEnemy(AIBattleMode ai, CarController car)
             : base(ai, car) { /* Nothing */ }
     }
 }

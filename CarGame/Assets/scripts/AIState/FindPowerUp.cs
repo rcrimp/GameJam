@@ -9,7 +9,7 @@ namespace CarGame
         // The powerup this ai is moving towards
         private GameObject targetPowerUp;
 
-        public FindPowerUp(AIBattleMode ai, CarDriving car)
+        public FindPowerUp(AIBattleMode ai, CarController car)
             : base(ai, car) { /* Nothing */ }
 
         public override void Initialize()

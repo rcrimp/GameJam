@@ -9,9 +9,9 @@ namespace CarGame
     public abstract class AIState
     {
         protected AIBattleMode ai;
-        protected CarDriving car;
+        protected CarController car;
 
-        public AIState(AIBattleMode ai, CarDriving car)
+        public AIState(AIBattleMode ai, CarController car)
         {
             this.ai = ai;
             this.car = car;

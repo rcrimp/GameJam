@@ -7,7 +7,7 @@ namespace CarGame
 {
     public class EvasiveManoeuvres : AIState
     {
-        public EvasiveManoeuvres(AIBattleMode ai, CarDriving car)
+        public EvasiveManoeuvres(AIBattleMode ai, CarController car)
             : base(ai, car) { /* Nothing */ }
 
         // Try to keep a certain distance away from enemies

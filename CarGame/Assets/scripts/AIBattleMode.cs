@@ -4,15 +4,15 @@ using System;
 
 namespace CarGame
 {
-    [RequireComponent(typeof(CarDriving))]
+    [RequireComponent(typeof(CarController))]
     public class AIBattleMode : MonoBehaviour
     {
-        private CarDriving car;
+        private CarController car;
         private AIState state;
 
         void Awake()
         {
-            car = GetComponent<CarDriving>();
+            car = GetComponent<CarController>();
         }
 
         void Start()
@@ -60,46 +60,49 @@ namespace CarGame
 
         IEnumerator OrientTowards(Vector3 target, float maximumAngle)
         {
-            // While angle from target is greater than the maximum allowed angle...
-            float angle = Vector3.Angle(transform.forward, transform.position - target);
-            while (angle > maximumAngle)
-            {
-                // Is the target to the left or to the right...
-                float dir = MathExtension.AngleDir(transform.forward, transform.position - target, Vector3.up);
+            //// While angle from target is greater than the maximum allowed angle...
+            //float angle = Vector3.Angle(transform.forward, transform.position - target);
+            //while (angle > maximumAngle)
+            //{
+            //    // Is the target to the left or to the right...
+            //    float dir = MathExtension.AngleDir(transform.forward, transform.position - target, Vector3.up);
 
-                // Target is to the left; go Left
-                if (car.Turning == null && dir <= 0)
-                    car.TurnLeft(target);
+            //    // Target is to the left; go Left
+            //    if (car.Turning == null && dir <= 0)
+            //        car.TurnLeft(target);
 
-                // Target is to the right; go right
-                else if (car.Turning == null && dir > 0)
-                    car.TurnRight(target);
+            //    // Target is to the right; go right
+            //    else if (car.Turning == null && dir > 0)
+            //        car.TurnRight(target);
 
-                // Wait til next frame
-                yield return null;
+            //    // Wait til next frame
+            //    yield return null;
 
-                angle = Vector3.Angle(transform.position + transform.forward, target - transform.position);
-            }
+            //    angle = Vector3.Angle(transform.position + transform.forward, target - transform.position);
+            //}
+            yield return null;
         }
 
         IEnumerator MoveForward(float distance)
         {
-            // Car's position when this coroutine is begun
-            Vector3 startPosition = transform.position;
-            float distanceCovered = 0;
+            //// Car's position when this coroutine is begun
+            //Vector3 startPosition = transform.position;
+            //float distanceCovered = 0;
 
-            // While the car has not moved the given distance
-            while (distanceCovered < distance)
-            {
-                // Continue to accelerate
-                car.Accelerate();
+            //// While the car has not moved the given distance
+            //while (distanceCovered < distance)
+            //{
+            //    // Continue to accelerate
+            //    car.Accelerate();
 
-                // Measure the distance covered
-                distanceCovered = Vector3.Distance(transform.position, startPosition);
+            //    // Measure the distance covered
+            //    distanceCovered = Vector3.Distance(transform.position, startPosition);
 
-                // Wait til next frame
-                yield return null;
-            }
+            //    // Wait til next frame
+            //    yield return null;
+            //}
+
+            yield return null;
         }
         
         /*
