@@ -24,7 +24,7 @@ public class GainMissiles : MonoBehaviour {
         GetComponent<Renderer>().enabled = false;
 
         GameObject collidingObject = collider.gameObject;
-        collidingObject.transform.parent.gameObject.AddComponent<RocketLauncher>();
+        collidingObject.transform.gameObject.AddComponent<RocketLauncher>();
                
         collidingObject.AddComponent<RocketLauncher>();
         RocketLauncher launcher = collidingObject.GetComponent<RocketLauncher>();

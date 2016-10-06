@@ -14,8 +14,8 @@ public class AIControls : MonoBehaviour
     private CarController car;
     private Transform carTrans;
     private Vector3 clickLocation;
-
-    private Coroutine clickToMove;
+    
+    private Coroutine MoveCommand;
 
     void Awake()
     {
@@ -63,10 +63,10 @@ public class AIControls : MonoBehaviour
 
     public void GoTo(Vector3 point)
     {
-        if (clickToMove != null)
-            StopCoroutine(clickToMove);
+        if (MoveCommand != null)
+            StopCoroutine(MoveCommand);
 
-        clickToMove = StartCoroutine(GoToPoint(point));
+        MoveCommand = StartCoroutine(GoToPoint(point));
     }
 
     public void Follow(Vector3[] path)
@@ -76,7 +76,13 @@ public class AIControls : MonoBehaviour
 
     public void Follow(Transform target)
     {
-        StartCoroutine(Chase(target));
+        if (MoveCommand != null)
+        {
+            StopCoroutine(MoveCommand);
+            MoveCommand = null;
+        }
+        MoveCommand = StartCoroutine(Chase(target));
+        //StartCoroutine(Chase(target));
     }
 
     private float SteeringTowards(Vector3 position)
