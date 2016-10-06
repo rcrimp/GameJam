@@ -15,6 +15,7 @@ public class PowerupSpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        //creates a powerup for every child of the component's gameobject (i.e. powerup spawn point)
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i);
@@ -22,11 +23,13 @@ public class PowerupSpawner : MonoBehaviour {
         }
     }
 	
+    //creates a randomly powered powerup at the given location
     public void CreateRandomPowerup(Vector3 spawnpoint)
     {
+        //instantiates a power up prefab
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, spawnpoint, Quaternion.identity);
 
-        //give the prefab a random power
+        //gives the prefab a random power
         int rand = Random.Range(0, 2);
         switch (rand)
         {
@@ -40,6 +43,7 @@ public class PowerupSpawner : MonoBehaviour {
                 break;
         }
 
+        //starts listening for the expenditure of this new power up.
         powerUp.GetComponent<Powerup>().PickedUp += PowerupSpawner_PickedUp;
     }
 

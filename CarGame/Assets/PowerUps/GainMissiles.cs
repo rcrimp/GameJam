@@ -13,7 +13,7 @@ public class GainMissiles : Powerup {
 
     void OnTriggerEnter(Collider collider)
     {
-        NotifyOnPickup();
+        NotifyOnPickup();//notify's any listeners that the powerup has been picked up
 
         GameObject collidingObject = collider.gameObject; //saves a ref to the colliding object's gameobject (for later readability)
                        
@@ -22,7 +22,7 @@ public class GainMissiles : Powerup {
         launcher.nMissiles = nMissiles; //tells the new  launcher how many missiles it should have
         launcher.rocketPrefab = rocketPrefab; //gives the rocketPrefab to the new launcher
 
-        Destroy(this.gameObject); //destroys this script
+        Destroy(this.gameObject); //destroys powerup
     }
 
 
