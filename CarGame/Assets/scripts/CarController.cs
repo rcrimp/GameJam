@@ -22,7 +22,7 @@ public class CarController : MonoBehaviour {
     public WheelCollider wheelRL;
 
     public float turnRadius = 6f;
-    public float torque = 25f;
+    public float torque = 250000f;
     public float brakeTorque = 100f;
 
     public float AntiRoll = 20000.0f;
@@ -35,14 +35,14 @@ public class CarController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
+        Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
 
         float scaledTorque = inputVer * torque;
 
-        if (wheelRL.rpm < idealRPM)
-            scaledTorque = Mathf.Lerp(scaledTorque / 10f, scaledTorque, wheelRL.rpm / idealRPM);
-        else
-            scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
+        //if (wheelRL.rpm < idealRPM)
+        //    scaledTorque = Mathf.Lerp(scaledTorque / 2f, scaledTorque, wheelRL.rpm / idealRPM);
+        //else
+        //    scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
 
         DoRollBar(wheelFR, wheelFL);
         DoRollBar(wheelRR, wheelRL);
