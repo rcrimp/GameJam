@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011314798372}
   - 95: {fileID: 95000011433827598}
+  - 114: {fileID: 114000010100845944}
   m_Layer: 0
   m_Name: dustCloud
   m_TagString: Untagged
@@ -459,3 +460,16 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010100845944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010982828154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad272e4e1b1d894899bbefaa2ba1d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  force: 2000000

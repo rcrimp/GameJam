@@ -3,16 +3,20 @@ using System.Collections;
 
 public class Explosion : MonoBehaviour
 {
+    public float radius = 2;
+    public float force = 10;
 
-    public GameObject dustcloudPrefab;
-
-    void OnCollisionEnter(Collision collision)
+    void Start()
     {
-        //gets a contact position of the collision
-        ContactPoint contact = collision.contacts[0];
-        Vector3 position = contact.point;
+        Collider[] impacted = Physics.OverlapSphere(transform.position, radius);
+        Debug.Log(impacted.Length);
+        for (int i = 0; i < impacted.Length; i++)
+        {
+            Debug.Log(impacted[i].name);
+            if(impacted[i].attachedRigidbody != null)
+                impacted[i].attachedRigidbody.AddExplosionForce(force, transform.position, radius);
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -21,33 +25,19 @@ public class Explosion : MonoBehaviour
 
     public void DustCloudAnimation()
     {
-        for (int i = 0; i < dustcloudPrefab.transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Transform cloudPart = dustcloudPrefab.transform.GetChild(i).transform;
+            Transform cloudPart = transform.GetChild(i).transform;
             cloudPart.rotation = Random.rotation;//randomise it's rotation,
 
             //scale it up to a random size,
-            Vector3 randomSize = 
+            //Vector3 randomSize = 
                 //new Vector3(Random.Range(cubeSizeWidthMin, cubesizeWidthMax), 1, 1);
             
-            cloudPart.localScale += Vector3.one * scaleRate;
+            //cloudPart.localScale += Vector3.one * scaleRate;
             //scale it back down
 
         }
     }
 
-    public void LerpScale(float durationInSeconds, Transform transformToScale)
-    {
-        var originalScale = transformToScale.localScale;
-        var targetScale = originalScale + Vector3(1.0f, 0.0f, 1.0f);
-        var originalTime = durationInSeconds;
-
-        while (durationInSeconds > 0.0f)
-        {
-            durationInSeconds -= Time.deltaTime;
-            transform.localScale = Vector3.Lerp(targetScale, originalScale, durationInSeconds / originalTime);
-            yield;
-
-        }
-    }
 }
