@@ -63,6 +63,9 @@
      <Compile Include="Assets\scripts\CheckPointActivated.cs" />
      <Compile Include="Assets\scripts\MathExtension.cs" />
      <Compile Include="Assets\scripts\PlayerControls.cs" />
+     <Compile Include="Assets\scripts\PlayerMultiplayer.cs" />
+     <Compile Include="Assets\scripts\RandomizeColor.cs" />
+     <Compile Include="Assets\scripts\SpawnChasers.cs" />
      <Compile Include="Assets\scripts\TyrePlacement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
