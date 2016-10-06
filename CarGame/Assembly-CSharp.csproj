@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\CarCamera\CarCam.cs" />
      <Compile Include="Assets\PowerUps\Explosion.cs" />
+     <Compile Include="Assets\ColliderScript.cs" />
      <Compile Include="Assets\PowerUps\GainMissiles.cs" />
      <Compile Include="Assets\PowerUps\Powerup.cs" />
      <Compile Include="Assets\PowerUps\PowerupRotation.cs" />
@@ -60,8 +61,12 @@
      <Compile Include="Assets\scripts\AIState\FindPowerUp.cs" />
      <Compile Include="Assets\scripts\AIState\HuntEnemy.cs" />
      <Compile Include="Assets\scripts\CarController.cs" />
+     <Compile Include="Assets\scripts\CheckPointActivated.cs" />
      <Compile Include="Assets\scripts\MathExtension.cs" />
      <Compile Include="Assets\scripts\PlayerControls.cs" />
+     <Compile Include="Assets\scripts\PlayerMultiplayer.cs" />
+     <Compile Include="Assets\scripts\RandomizeColor.cs" />
+     <Compile Include="Assets\scripts\SpawnChasers.cs" />
      <Compile Include="Assets\scripts\TyrePlacement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

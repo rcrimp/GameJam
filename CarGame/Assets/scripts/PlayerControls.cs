@@ -4,9 +4,8 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour {
 
-    public GameObject cameraObject;
     CarController car = null;
-
+    public bool serverControlled = false;
 	// Use this for initialization
 	void Start () {
         car = GetComponent<CarController>();
@@ -14,7 +13,7 @@ public class PlayerControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (car != null) {
+        if (car != null && !serverControlled) {
             float steer = Input.GetAxis("Horizontal");
             float gas = Input.GetAxis("Vertical");
             car.updateInput(steer, gas);

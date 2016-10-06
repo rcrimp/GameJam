@@ -33,7 +33,7 @@ public class CarCam : MonoBehaviour
     void LateUpdate()
     {
         Quaternion look;
-
+        if (car == null) return;
         // Moves the camera to match the car's position.
         rootNode.position = Vector3.Lerp(rootNode.position, car.position, cameraStickiness * Time.fixedDeltaTime);
 
