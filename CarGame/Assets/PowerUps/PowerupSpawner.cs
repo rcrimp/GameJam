@@ -3,12 +3,19 @@ using System.Collections;
 
 public class PowerupSpawner : MonoBehaviour {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    
     public GameObject rocketPrefab;
     public GameObject powerUpPrefab;
+    public float powerupRespawnDelay = 5;
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
+        //creates a powerup for every child of the component's gameobject (i.e. powerup spawn point)
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i);
@@ -16,17 +23,13 @@ public class PowerupSpawner : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
+    //creates a randomly powered powerup at the given location
     public void CreateRandomPowerup(Vector3 spawnpoint)
     {
+        //instantiates a power up prefab
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, spawnpoint, Quaternion.identity);
 
-        //give the prefab a random power
+        //gives the prefab a random power
         int rand = Random.Range(0, 2);
         switch (rand)
         {
@@ -37,19 +40,25 @@ public class PowerupSpawner : MonoBehaviour {
                 CreateGainMissiles(powerUp);
                 break;
             default:
-                Debug.Log("Creating an exciting new powerup");
                 break;
         }
+
+        //starts listening for the expenditure of this new power up.
+        powerUp.GetComponent<Powerup>().PickedUp += PowerupSpawner_PickedUp;
+    }
+
+    private void PowerupSpawner_PickedUp(object sender, System.EventArgs e)
+    {
+        //when a power up is expended, remember its location, wait for a bit, then create another powerup there
+        Powerup expendedPowerUp = (Powerup)sender;
+        StartCoroutine(SpawnAfterDelay(expendedPowerUp.transform.position, powerupRespawnDelay));       
     }
 
     public void CreateSpeedBoost(GameObject powerUp) //gives the speed boost effect to the given powerUp
     {
         powerUp.AddComponent<SpeedBoost>();
         SpeedBoost speedBoost = powerUp.GetComponent<SpeedBoost>(); //(Makes the next few lines easier to read)
-        speedBoost.boostDuration = 0.5f;
         speedBoost.speedIncrease = 1000000;
-        speedBoost.slowDownDuration = 2;
-        Debug.Log("SpeedBoost powerup created");
     }
 
     public void CreateGainMissiles(GameObject powerUp)
@@ -58,6 +67,14 @@ public class PowerupSpawner : MonoBehaviour {
         GainMissiles gainMissiles = powerUp.GetComponent<GainMissiles>();//(Makes the next few lines easier to read)
         gainMissiles.nMissiles = 5;
         gainMissiles.rocketPrefab = rocketPrefab;
-        Debug.Log("Missile powerup created");
     }
+  
+    IEnumerator SpawnAfterDelay(Vector3 location, float delayInSeconds)
+    {
+        yield return new WaitForSeconds(delayInSeconds);
+        CreateRandomPowerup(location);
+    }
+
+    //on the event of a powerup collision, tell me the location of the powerup
+    
 }
