@@ -45,16 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+     <Compile Include="Assets\CarCamera\CarCam.cs" />
      <Compile Include="Assets\PowerUps\BurgerCarBehaviour.cs" />
      <Compile Include="Assets\PowerUps\GainMissiles.cs" />
      <Compile Include="Assets\PowerUps\PowerupRotation.cs" />
      <Compile Include="Assets\PowerUps\PowerupSpawner.cs" />
      <Compile Include="Assets\PowerUps\RocketLauncher.cs" />
      <Compile Include="Assets\PowerUps\SpeedBoost.cs" />
-=======
-     <Compile Include="Assets\CarCamera\CarCam.cs" />
->>>>>>> refs/remotes/origin/master
      <Compile Include="Assets\scripts\CarController.cs" />
      <Compile Include="Assets\scripts\PlayerControls.cs" />
      <Compile Include="Assets\scripts\TyrePlacement.cs" />

@@ -41,7 +41,8 @@ public class RocketLauncher : MonoBehaviour {
 
     public void Shoot()
     {
-        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), Quaternion.identity, transform) as GameObject;
+        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), Quaternion.identity) as GameObject;
+        currentRocket.GetComponent<Rigidbody>().isKinematic = false;
         currentRocket.GetComponent<ConstantForce>().enabled = true;
         currentRocket.GetComponent<BoxCollider>().enabled = true;
     }
