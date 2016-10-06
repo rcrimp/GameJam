@@ -751,6 +751,66 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 146000013211173322, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012709054240, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012492668070, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012824441568, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000013211173322, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012709054240, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012492668070, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012824441568, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000013211173322, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012709054240, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012492668070, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 146000012824441568, guid: a3c1b82083f6dfc44bcf674611eaeb20,
+        type: 2}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
   m_IsPrefabParent: 0
