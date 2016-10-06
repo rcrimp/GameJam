@@ -45,13 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\LavaPackage\Lava3\Sources\Scripts\Lava3.cs" />
-     <Compile Include="Assets\Standard Assets\LavaPackage\Lava3\Sources\Scripts\Lava3Float.cs" />
-     <Compile Include="Assets\Standard Assets\LavaPackage\Lava3\Sources\Scripts\Lava3UnderwaterEffect.cs" />
-     <Compile Include="Assets\Standard Assets\LavaPackage\Lava3\Sources\Scripts\LavaManager.cs" />
-     <None Include="Assets\New Folder\environmental assets\Lava\Sources\Shaders\Lava.shader" />
-     <None Include="Assets\Standard Assets\Water (Pro Only)\Water3\Sources\Shaders\FX-Water3.shader" />
-     <None Include="Assets\Standard Assets\LavaPackage\Sources\Lava.shader" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\BrakeLight.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarAudio.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarController.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\Mudguard.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
+     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
