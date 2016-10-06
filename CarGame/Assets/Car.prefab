@@ -1652,7 +1652,7 @@ MonoBehaviour:
   wheelRR: {fileID: 146000010954515544}
   wheelRL: {fileID: 146000012382253270}
   turnRadius: 20
-  torque: 500000000
+  torque: 1000
   brakeTorque: 100000
   AntiRoll: 100000
   driveMode: 1
