@@ -6,7 +6,6 @@ public class PlayerControls : MonoBehaviour {
 
     CarController car = null;
     public bool serverControlled = false;
-
 	// Use this for initialization
 	void Start () {
         car = GetComponent<CarController>();
