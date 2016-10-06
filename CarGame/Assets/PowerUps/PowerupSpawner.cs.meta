@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 216dfa2e390deb74ca5c5f34718bb23e
+timeCreated: 1475727318
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - rocketPrefab: {fileID: 1000013497966130, guid: 5ca1cda5ac21937429c203be011da1b2,
+      type: 2}
+  - powerUpPrefab: {fileID: 1000013174568174, guid: 7809ab3688507b04ea16207636ac30aa,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
