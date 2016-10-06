@@ -37,7 +37,6 @@ public class PowerupSpawner : MonoBehaviour {
                 CreateGainMissiles(powerUp);
                 break;
             default:
-                Debug.Log("Creating an exciting new powerup");
                 break;
         }
 
@@ -56,7 +55,6 @@ public class PowerupSpawner : MonoBehaviour {
         powerUp.AddComponent<SpeedBoost>();
         SpeedBoost speedBoost = powerUp.GetComponent<SpeedBoost>(); //(Makes the next few lines easier to read)
         speedBoost.speedIncrease = 1000000;
-        Debug.Log("SpeedBoost powerup created");
     }
 
     public void CreateGainMissiles(GameObject powerUp)
@@ -65,7 +63,6 @@ public class PowerupSpawner : MonoBehaviour {
         GainMissiles gainMissiles = powerUp.GetComponent<GainMissiles>();//(Makes the next few lines easier to read)
         gainMissiles.nMissiles = 5;
         gainMissiles.rocketPrefab = rocketPrefab;
-        Debug.Log("Missile powerup created");
     }
   
     IEnumerator SpawnAfterDelay(Vector3 location, float delayInSeconds)
