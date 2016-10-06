@@ -171,7 +171,7 @@ public class AIControls : MonoBehaviour
             float steeringInput = SteeringTowards(target.position);
             float gasInput = GasTowards(target.position);
 
-            print("SteeringInput: " + steeringInput + ", GasInput: " + gasInput);
+            //print("SteeringInput: " + steeringInput + ", GasInput: " + gasInput);
 
             car.updateInput(steeringInput, gasInput);
 
