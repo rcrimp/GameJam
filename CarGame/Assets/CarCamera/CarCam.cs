@@ -30,7 +30,7 @@ public class CarCam : MonoBehaviour
         rootNode.parent = null;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         Quaternion look;
 

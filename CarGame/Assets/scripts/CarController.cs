@@ -21,7 +21,7 @@ public class CarController : MonoBehaviour {
     public WheelCollider wheelRR;
     public WheelCollider wheelRL;
 
-    public float turnRadius = 6f;
+    public float turnRadius = 10f;
     public float torque = 250000f;
     public float brakeTorque = 100f;
 
@@ -37,6 +37,7 @@ public class CarController : MonoBehaviour {
     void FixedUpdate() {
         Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
 
+        
         float scaledTorque = inputVer * torque;
 
         //if (wheelRL.rpm < idealRPM)
@@ -54,6 +55,7 @@ public class CarController : MonoBehaviour {
         wheelFL.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
         wheelRR.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
         wheelRL.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
+        GetComponent<Rigidbody>().AddForce(0,-100,0);
     }
 
 
