@@ -23,19 +23,9 @@ public class SpeedBoost : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("THERE'S A COLLISION");
-        //increase the speed of the thing that collides with me
-
-        //saves a ref to the behaviour script of the collider. if there isn't one, value is null
-        BurgerCarBehaviour collidingObject = collider.gameObject.GetComponent<BurgerCarBehaviour>();
-
-        //if there's a behaviourScript
-        if (collidingObject != null)
-        {
-            Debug.Log("THERE'S A BEHAVIOUR SCRIPT");
-            originalSpeed = collidingObject.Speed;
-            StartCoroutine(Boost(collidingObject));
-        }
+        GameObject collidingObject = collider.gameObject;
+        ConstantForce force = collidingObject.AddComponent<ConstantForce>();
+        force.relativeForce.Set(0, 0, -1000f);
     }
 
     public IEnumerator Boost(BurgerCarBehaviour collidingObject)
