@@ -11,13 +11,12 @@ public class AIControls : MonoBehaviour
     public float MaximumDistanceDelta = 1;
 
     [Tooltip("The target that this ai will chase. If none is specified, the ai will move to a clicked location")]
-    public Transform target;
+    public Transform Target;
 
     [Tooltip("The maximum velocity at which the ai will count as stationary when braking")]
     public float BrakeVelocity = 0.1f;
 
     private AIState state;              // The behaviour state the AI is currently in
-    private Vector3 clickLocation;      // ClickLocation (for Gizmo drawing)
     private Coroutine moveCommand;      // Whether the car is currently moving to a clicked location
     private CarController car;          // The car to control
     private Transform carTrans;         // The car's transform
@@ -31,41 +30,16 @@ public class AIControls : MonoBehaviour
     // Starts following target
     void Start()
     {
-        // Follow target if there is one
-        if (target != null)
-            Follow(target);
+        if (Target != null)
+            SetState(new ChaseTarget(this, car, Target));
+        else
+            SetState(new ClickToMove(this, car));
     }
 
-    // Moves to click location
     void Update()
     {
-        // Only follow clicks if there is no target
-        if (target == null && Input.GetMouseButtonDown(0))
-        {
-            // Get mouse click ray
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // Find where the terrain was clicked
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                // Go to location
-                GoTo(hitInfo.point);
-                clickLocation = hitInfo.point;  // Remeber clicked location (for Gizmo drawing)
-            }
-        }
-    }
-
-    // Draws line from car to target point
-    void OnDrawGizmos()
-    {
-        // If game is in play
-        if (carTrans != null)
-        {
-            // Draw line from car to target OR clickLocation
-            Vector3 to = target == null ? clickLocation : target.position;
-            Gizmos.DrawLine(carTrans.position, to);
-        }
+        if (state != null)
+            state.Update();
     }
 
     /// <summary>
@@ -90,10 +64,10 @@ public class AIControls : MonoBehaviour
     /// </summary>
     public void GoTo(Vector3 point)
     {
-        // If currently moving to a click...
-        if (moveCommand != null)
-            StopCoroutine(moveCommand); // Stop moving to old click
-
+        // If currently moving to a click... stop moving to old click
+        CancelMoveCommand();
+        
+        // Move to new click
         moveCommand = StartCoroutine(StopAtPoint(point));
     }
 
@@ -103,6 +77,8 @@ public class AIControls : MonoBehaviour
     /// </summary>
     public void Follow(Vector3[] path)
     {
+        CancelMoveCommand();
+
         moveCommand = StartCoroutine(FollowPath(path));
     }
 
@@ -111,7 +87,17 @@ public class AIControls : MonoBehaviour
     /// </summary>
     public void Follow(Transform target)
     {
+        CancelMoveCommand();
+
         moveCommand = StartCoroutine(Chase(target));
+    }
+
+    public void CancelMoveCommand()
+    {
+        if (moveCommand != null)
+            StopCoroutine(moveCommand);
+
+        moveCommand = null;
     }
 
     // Calculates how much to steer in a particular direction when orienting towards the given point

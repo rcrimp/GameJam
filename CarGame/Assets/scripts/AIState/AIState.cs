@@ -23,7 +23,15 @@ public abstract class AIState
     public virtual void Initialize() { /* Nothing*/ }
 
     /// <summary>
+    /// Use Update for any logic that the state needs to perform each frame
+    /// </summary>
+    public virtual void Update() {  /* Nothing */ }
+
+    /// <summary>
     /// Use Terminate for any logic to be executed by a state when it is ending.
     /// </summary>
-    public virtual void Terminate() { /* Nothing */ }
+    public virtual void Terminate()
+    {
+        ai.CancelMoveCommand();
+    }
 }
