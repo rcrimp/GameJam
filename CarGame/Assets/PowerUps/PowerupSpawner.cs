@@ -3,18 +3,17 @@ using System.Collections;
 
 public class PowerupSpawner : MonoBehaviour {
 
-    public int MaxNumberOfPowerups;
     public GameObject rocketPrefab;
     public GameObject powerUpPrefab;
-    public GameObject track;
-    Bounds trackBounds;
 
 	// Use this for initialization
 	void Start () {
 
-        trackBounds = track.GetComponent<Renderer>().bounds;
-        SpawnPowerUps(MaxNumberOfPowerups);
-
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i);
+            CreateRandomPowerup(transform.GetChild(i).position);
+        }
     }
 	
 	// Update is called once per frame
@@ -22,20 +21,10 @@ public class PowerupSpawner : MonoBehaviour {
 	
 	}
 
-    public void SpawnPowerUps(int nPowerUps)
-    {
-        for (int i = 0; i < nPowerUps; i++)
-        {
-            CreateRandomPowerup();
-        }        
-    }
 
-    public void CreateRandomPowerup()
+    public void CreateRandomPowerup(Vector3 spawnpoint)
     {
-        //create powerup prefab at random location within bounds of the track
-        float x = trackBounds.center.x + Random.Range(-trackBounds.extents.x, trackBounds.extents.x);
-        float z = trackBounds.center.z + Random.Range(-trackBounds.extents.z, trackBounds.extents.z);
-        GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, new Vector3(x, 0.5f, z), Quaternion.identity);
+        GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, spawnpoint, Quaternion.identity);
 
         //give the prefab a random power
         int rand = Random.Range(0, 2);
