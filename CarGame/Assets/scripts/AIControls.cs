@@ -10,10 +10,10 @@ public class AIControls : MonoBehaviour
     public float MaximumDistanceDelta = 1;
 
     public Transform target;
+    private Vector3 clickLocation;
 
     private CarController car;
     private Transform carTrans;
-    private Vector3 clickLocation;
 
     private Coroutine clickToMove;
 
@@ -103,6 +103,16 @@ public class AIControls : MonoBehaviour
         return angleFromDesiredDirection > 90 ? -1 : 1;
     }
 
+    private float Brake()
+    {
+        // C# and UnityScript
+        Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        Vector3 localVel = transform.InverseTransformDirection(velocity);
+
+        float direction = localVel.z > 0 ? -1 : 1;
+        return direction;
+    }
+
     IEnumerator FollowPath(Vector3[] path)
     {
         // Go to each point in path
@@ -116,7 +126,7 @@ public class AIControls : MonoBehaviour
         yield return StartCoroutine(TurnToFace(point));
 
         // Drive forwards the required distance
-        yield return StartCoroutine(DriveTowards(point));
+        yield return StartCoroutine(DriveTowards(point));        
     }
 
     IEnumerator TurnToFace(Vector3 point)
@@ -162,6 +172,18 @@ public class AIControls : MonoBehaviour
 
         // Stop applying gas (car will continue to drift)
         car.updateInput(0, 0);
+    }
+
+    IEnumerator Stay()
+    {
+        while(true)
+        {
+            float gasInput = Brake();
+
+            car.updateInput(0, gasInput);
+
+            yield return null;
+        }
     }
 
     IEnumerator Chase(Transform target)
