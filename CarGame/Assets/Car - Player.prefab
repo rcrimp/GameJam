@@ -122,6 +122,7 @@ GameObject:
   - 114: {fileID: 114000013089964638}
   - 114: {fileID: 114000013724135288}
   - 114: {fileID: 114000013213785830}
+  - 114: {fileID: 114000013611095722}
   m_Layer: 0
   m_Name: Car - Player
   m_TagString: Untagged
@@ -1713,6 +1714,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 695c24a9addb8524187bfe4b8e7b87ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverControlled: 0
+--- !u!114 &114000013611095722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010846603230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca98c9d71420781429032a419dde4b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1000013655093574}
