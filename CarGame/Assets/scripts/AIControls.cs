@@ -3,11 +3,11 @@ using System.Collections;
 
 public class AIControls : MonoBehaviour
 {
-    [Tooltip("The maximum allowable angle in degrees that the AI's facing can differ from a targeted vector")]
+    [Tooltip("The maximum allowable angle in degrees that the AI's facing can differ from a targeted vector when orienting towards it")]
     public float MaximumAngleDelta = 10;
 
-    //[Tooltip("The maximum allowable distance that the AI's location can differ from a targeted vector")]
-    //public float MaximumDistanceDelta = 1;
+    [Tooltip("The maximum allowable distance that the AI's location can differ from a targeted vector when moving to it")]
+    public float MaximumDistanceDelta = 1;
 
     private CarController car;
     private Transform carTrans;
@@ -66,11 +66,8 @@ public class AIControls : MonoBehaviour
         // Orient towards point
         yield return StartCoroutine(TurnToFace(point));
 
-        // Measure how far to travel
-        float distanceToTravel = Vector3.Distance(carTrans.position, point);
-
         // Drive forwards the required distance
-        yield return StartCoroutine(DriveForwards(distanceToTravel));
+        yield return StartCoroutine(DriveTowards(point));
     }
 
     IEnumerator TurnToFace(Vector3 point)
@@ -94,23 +91,28 @@ public class AIControls : MonoBehaviour
         }
     }
 
-    IEnumerator DriveForwards(float distance)
+    IEnumerator DriveTowards(Vector3 position)
     {
-        // Position at which the car begins
-        Vector3 startPosition = carTrans.position;
+        float distanceToTarget = Vector3.Distance(carTrans.position, position);
 
         // How much distance has been covered?
-        float coveredDistance = 0;
-        while (coveredDistance > distance)
+        while (distanceToTarget > MaximumDistanceDelta)
         {
-            // No steering, full gas!
-            car.updateInput(0, 1);
+            Vector3 desiredDirection = position - carTrans.position;
+            float angleDirection = MathExtension.AngleDir(carTrans.forward, desiredDirection, Vector3.up);
+            print(angleDirection);
+
+            // Orient towards, full gas!
+            car.updateInput(angleDirection, 1);
 
             // Wait til next frame
             yield return null;
 
             // Track distance covered
-            coveredDistance += Vector3.Distance(startPosition, carTrans.position);
+            distanceToTarget = Vector3.Distance(carTrans.position, position);
         }
+
+        // Stop applying gas
+        car.updateInput(0, 0);
     }
 }
