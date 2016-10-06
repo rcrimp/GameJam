@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013340675454}
+  - 114: {fileID: 114000010469463768}
   m_Layer: 0
   m_Name: CarMesh
   m_TagString: Untagged
@@ -1547,6 +1548,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelCollider: {fileID: 146000013248403630}
+--- !u!114 &114000010469463768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010940346438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac146839b86caf14b800e6f8782f0ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010736690838
 MonoBehaviour:
   m_ObjectHideFlags: 1
