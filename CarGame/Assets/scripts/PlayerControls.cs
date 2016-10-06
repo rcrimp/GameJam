@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
-public class PlayerControls : NetworkBehaviour {
+public class PlayerControls : MonoBehaviour {
 
     public GameObject cameraObject;
     CarController car = null;
@@ -10,15 +10,11 @@ public class PlayerControls : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         car = GetComponent<CarController>();
-        if (!isLocalPlayer)
-        {
-            cameraObject.SetActive(false);
-        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (car != null && isLocalPlayer) {
+        if (car != null) {
             float steer = Input.GetAxis("Horizontal");
             float gas = Input.GetAxis("Vertical");
             car.updateInput(steer, gas);
