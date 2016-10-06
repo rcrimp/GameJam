@@ -4,6 +4,7 @@ using System.Collections;
 public class PowerupSpawner : MonoBehaviour {
 
     public int MaxNumberOfPowerups;
+    public GameObject rocketPrefab;
     public GameObject powerUpPrefab;
     public GameObject track;
     Bounds trackBounds;
@@ -43,21 +44,31 @@ public class PowerupSpawner : MonoBehaviour {
             case 0:
                 CreateSpeedBoost(powerUp);
                 break;
+            case 1:
+                CreateGainMissiles(powerUp);
+                break;
             default:
                 Debug.Log("Creating an exciting new powerup");
                 break;
         }
-
-
     }
 
-    public void CreateSpeedBoost(GameObject powerUp)
+    public void CreateSpeedBoost(GameObject powerUp) //gives the speed boost effect to the given powerUp
     {
         powerUp.AddComponent<SpeedBoost>();
-        SpeedBoost speedBoost = powerUp.GetComponent<SpeedBoost>();
+        SpeedBoost speedBoost = powerUp.GetComponent<SpeedBoost>(); //(Makes the next few lines easier to read)
         speedBoost.boostDuration = 0.5f;
         speedBoost.speedIncrease = 10;
         speedBoost.slowDownDuration = 2;
-        Debug.Log("SpeedBoost");
+        Debug.Log("SpeedBoost powerup created");
+    }
+
+    public void CreateGainMissiles(GameObject powerUp)
+    {
+        powerUp.AddComponent<GainMissiles>();
+        GainMissiles gainMissiles = powerUp.GetComponent<GainMissiles>();//(Makes the next few lines easier to read)
+        gainMissiles.nMissiles = 5;
+        gainMissiles.rocketPrefab = rocketPrefab;
+        Debug.Log("Missile powerup created");
     }
 }
