@@ -19,7 +19,12 @@ public class RocketLauncher : MonoBehaviour {
     void Start()
     {
         nRemainingMissiles = nMissiles;
-        displayRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), Quaternion.identity, transform) as GameObject;
+
+        //hack fix: not sure why, but missiles and car's have opposite y facing. this is my hack fix for that.
+        Quaternion rotation = transform.rotation;
+        rotation *= Quaternion.Euler(0, 180, 0); // this add a 180 degrees Y rotation
+
+        displayRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), rotation, transform) as GameObject;
     }
 
     // Update is called once per frame
@@ -41,7 +46,11 @@ public class RocketLauncher : MonoBehaviour {
 
     public void Shoot()
     {
-        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), Quaternion.identity) as GameObject;
+        //hack fix: not sure why, but missiles and car's have opposite y facing. this is my hack fix for that.
+        Quaternion rotation = transform.rotation;
+        rotation *= Quaternion.Euler(0, 180, 0); // this add a 180 degrees Y rotation
+
+        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), rotation) as GameObject;
         currentRocket.GetComponent<Rigidbody>().isKinematic = false;
         currentRocket.GetComponent<ConstantForce>().enabled = true;
         currentRocket.GetComponent<BoxCollider>().enabled = true;

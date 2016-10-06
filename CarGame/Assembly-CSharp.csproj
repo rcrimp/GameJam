@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CarCamera\CarCam.cs" />
+     <Compile Include="Assets\PowerUps\Explosion.cs" />
      <Compile Include="Assets\ColliderScript.cs" />
      <Compile Include="Assets\PowerUps\GainMissiles.cs" />
      <Compile Include="Assets\PowerUps\Powerup.cs" />
