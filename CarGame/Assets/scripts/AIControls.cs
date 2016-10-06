@@ -19,7 +19,7 @@ public class AIControls : MonoBehaviour
 
     void Awake()
     {
-        car = GetComponentInChildren<CarController>();
+        car = GetComponent<CarController>();
         carTrans = transform.GetChild(0);
     }
 
