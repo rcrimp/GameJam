@@ -21,10 +21,13 @@ public class GainMissiles : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
+        GetComponent<Renderer>().enabled = false;
         GameObject collidingObject = collider.gameObject;
         collidingObject.AddComponent<RocketLauncher>();
         RocketLauncher launcher = collidingObject.GetComponent<RocketLauncher>();
         launcher.nMissiles = nMissiles;
-        launcher.rocketPrefab = rocketPrefab;       
+        launcher.rocketPrefab = rocketPrefab;
+
+        Destroy(this.gameObject);
     }
 }

@@ -38,7 +38,7 @@ public class PowerupSpawner : MonoBehaviour {
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, new Vector3(x, 0.5f, z), Quaternion.identity);
 
         //give the prefab a random power
-        int rand = Random.Range(0, 3);
+        int rand = Random.Range(0, 2);
         switch (rand)
         {
             case 0:
@@ -58,7 +58,7 @@ public class PowerupSpawner : MonoBehaviour {
         powerUp.AddComponent<SpeedBoost>();
         SpeedBoost speedBoost = powerUp.GetComponent<SpeedBoost>(); //(Makes the next few lines easier to read)
         speedBoost.boostDuration = 0.5f;
-        speedBoost.speedIncrease = 10;
+        speedBoost.speedIncrease = 1000000;
         speedBoost.slowDownDuration = 2;
         Debug.Log("SpeedBoost powerup created");
     }

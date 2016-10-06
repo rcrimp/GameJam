@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SpeedBoost : MonoBehaviour
 {
-
     public float boostDuration;
     public float speedIncrease;
     public float slowDownDuration;
@@ -23,28 +22,28 @@ public class SpeedBoost : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        GameObject collidingObject = collider.gameObject;
-        ConstantForce force = collidingObject.AddComponent<ConstantForce>();
-        force.relativeForce.Set(0, 0, -1000f);
+        Debug.Log(collider.name);
+        Debug.Log(Vector3.forward * speedIncrease);       
+        collider.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speedIncrease);
+        Destroy(this.gameObject);
     }
 
-    public IEnumerator Boost(BurgerCarBehaviour collidingObject)
-    {
-        collidingObject.Speed *= speedIncrease;
-        Debug.Log("BOOST");
-        yield return new WaitForSeconds(boostDuration);
-        StartCoroutine(SlowDown(collidingObject));
-    }
+    //public IEnumerator Boost(BurgerCarBehaviour collidingObject)
+    //{
+    //    collidingObject.Speed *= speedIncrease;
+    //    yield return new WaitForSeconds(boostDuration);
+    //    StartCoroutine(SlowDown(collidingObject));
+    //}
 
-    public IEnumerator SlowDown(BurgerCarBehaviour collidingObject)
-    {
-        float expiredDuration = 0;
-        while(expiredDuration < slowDownDuration)
-        {
-            expiredDuration += Time.deltaTime;
-            collidingObject.Speed = Mathf.Lerp(collidingObject.Speed, originalSpeed, expiredDuration/slowDownDuration);
-            yield return null;
-        }
-        collidingObject.Speed = originalSpeed;
-    }
+    //public IEnumerator SlowDown(BurgerCarBehaviour collidingObject)
+    //{
+    //    float expiredDuration = 0;
+    //    while(expiredDuration < slowDownDuration)
+    //    {
+    //        expiredDuration += Time.deltaTime;
+    //        collidingObject.Speed = Mathf.Lerp(collidingObject.Speed, originalSpeed, expiredDuration/slowDownDuration);
+    //        yield return null;
+    //    }
+    //    collidingObject.Speed = originalSpeed;
+    //}
 }
