@@ -90,46 +90,52 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &178463832
+--- !u!1001 &505829920
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.31
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013700770484, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - target: {fileID: 4000010206557036, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1000010039955432, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_Name
+      value: Car (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114000012231813828, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - {fileID: 114000011230691048, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &661865380
@@ -254,8 +260,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 747078060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.21919797, y: -0.5443612, z: 0.14995977, w: -0.795698}
+  m_LocalPosition: {x: -36.591248, y: 13.944007, z: 0.10686588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -324,6 +330,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &1293843783 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010039955432, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54,
+    type: 2}
+  m_PrefabInternal: {fileID: 505829920}
+--- !u!114 &1293843790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1293843783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5e53be9839864ab8f970a1899a07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumAngleDelta: 10
+  MaximumDistanceDelta: 1
+  target: {fileID: 0}
+  BrakeVelocity: 0.1
 --- !u!1001 &1320806222
 Prefab:
   m_ObjectHideFlags: 0

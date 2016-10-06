@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(CarController))]
 public class AIControls : MonoBehaviour
 {
     [Tooltip("The maximum allowable angle in degrees that the AI's facing can differ from a targeted vector when orienting towards it")]
@@ -9,13 +10,17 @@ public class AIControls : MonoBehaviour
     [Tooltip("The maximum allowable distance that the AI's location can differ from a targeted vector when moving to it")]
     public float MaximumDistanceDelta = 1;
 
+    [Tooltip("The target that this ai will chase. If none is specified, the ai will move to a clicked location")]
     public Transform target;
-    private Vector3 clickLocation;
 
-    private CarController car;
-    private Transform carTrans;
+    [Tooltip("The maximum velocity at which the ai will count as stationary when braking")]
+    public float BrakeVelocity = 0.1f;
 
-    private Coroutine clickToMove;
+    private AIState state;              // The behaviour state the AI is currently in
+    private Vector3 clickLocation;      // ClickLocation (for Gizmo drawing)
+    private Coroutine moveCommand;      // Whether the car is currently moving to a clicked location
+    private CarController car;          // The car to control
+    private Transform carTrans;         // The car's transform
 
     void Awake()
     {
@@ -23,63 +28,94 @@ public class AIControls : MonoBehaviour
         carTrans = transform.GetChild(0);
     }
 
+    // Starts following target
     void Start()
     {
+        // Follow target if there is one
         if (target != null)
             Follow(target);
     }
 
+    // Moves to click location
     void Update()
     {
         // Only follow clicks if there is no target
         if (target == null && Input.GetMouseButtonDown(0))
         {
+            // Get mouse click ray
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            // Find where the terrain was clicked
             RaycastHit hitInfo;
-
             if (Physics.Raycast(ray, out hitInfo))
             {
+                // Go to location
                 GoTo(hitInfo.point);
-                clickLocation = hitInfo.point;
+                clickLocation = hitInfo.point;  // Remeber clicked location (for Gizmo drawing)
             }
         }
     }
 
+    // Draws line from car to target point
     void OnDrawGizmos()
     {
+        // If game is in play
         if (carTrans != null)
         {
-            Vector3 from = carTrans.position;
-            from.y += 0.5f;
-
             // Draw line from car to target OR clickLocation
             Vector3 to = target == null ? clickLocation : target.position;
-            to.y += 0.5f;
-
-            Gizmos.DrawLine(from, to);
+            Gizmos.DrawLine(carTrans.position, to);
         }
     }
 
+    /// <summary>
+    /// Changes the AI's state to the given behaviour state
+    /// </summary>
+    public void SetState(AIState state)
+    {
+        // Notify old state that it is being terminated
+        if (this.state != null)
+            this.state.Terminate();
+
+        // Overwrite old state with new state
+        this.state = state;
+
+        // Initialize the new state
+        this.state.Initialize();
+    }
+
+    /// <summary>
+    /// AI car will orient towards and then drive in the direction of the given point. The AI will begin braking ONCE THE 
+    /// POINT HAS BEEN REACHED, meaning it will overshoot the point by some amount.
+    /// </summary>
     public void GoTo(Vector3 point)
     {
-        if (clickToMove != null)
-            StopCoroutine(clickToMove);
+        // If currently moving to a click...
+        if (moveCommand != null)
+            StopCoroutine(moveCommand); // Stop moving to old click
 
-        clickToMove = StartCoroutine(GoToPoint(point));
+        moveCommand = StartCoroutine(StopAtPoint(point));
     }
 
+    /// <summary>
+    /// AI car moves to each of the points in the given path. No braking occurs after visiting each point, meaning the AI will overshoot
+    /// subsequent points if they are close together
+    /// </summary>
     public void Follow(Vector3[] path)
     {
-        StartCoroutine(FollowPath(path));
+        moveCommand = StartCoroutine(FollowPath(path));
     }
 
+    /// <summary>
+    /// AI car follows that given transform as it moves about the world. AI car does NOT avoid obstacles when following another object.
+    /// </summary>
     public void Follow(Transform target)
     {
-        StartCoroutine(Chase(target));
+        moveCommand = StartCoroutine(Chase(target));
     }
 
-    private float SteeringTowards(Vector3 position)
+    // Calculates how much to steer in a particular direction when orienting towards the given point
+    private float CalculateSteeringTowards(Vector3 position)
     {
         // Determine which way to turn
         Vector3 desiredDirection = position - carTrans.position;
@@ -92,7 +128,9 @@ public class AIControls : MonoBehaviour
             return MathExtension.AngleDir(carTrans.forward, desiredDirection, Vector3.up);
     }
 
-    private float GasTowards(Vector3 position)
+    // Calculates which direction to accelerate in when moving towards the given position. SHould be used in conjunction
+    // with CalculateSteeringTowards
+    private float CalculateGasTowards(Vector3 position)
     {
         // Determine which way to turn
         Vector3 desiredDirection = position - carTrans.position;
@@ -103,16 +141,22 @@ public class AIControls : MonoBehaviour
         return angleFromDesiredDirection > 90 ? -1 : 1;
     }
 
-    private float Brake()
+    //Calculates how much reverse direction gas to apply when trying to come to a stop
+    private float CalculateGasBrake()
     {
-        // C# and UnityScript
         Vector3 velocity = GetComponent<Rigidbody>().velocity;
         Vector3 localVel = transform.InverseTransformDirection(velocity);
 
-        float direction = localVel.z > 0 ? -1 : 1;
-        return direction;
+        float gasInput = 0;
+        if (localVel.z > BrakeVelocity)
+            gasInput = -1;
+        else if (localVel.z < -BrakeVelocity)
+            gasInput = 1;
+
+        return gasInput;
     }
 
+    // Orients towards then moves to each point in path
     IEnumerator FollowPath(Vector3[] path)
     {
         // Go to each point in path
@@ -120,6 +164,7 @@ public class AIControls : MonoBehaviour
             yield return StartCoroutine(GoToPoint(point));
     }
 
+    // Orients towards then moves to the given point
     IEnumerator GoToPoint(Vector3 point)
     {
         // Orient towards point
@@ -129,6 +174,17 @@ public class AIControls : MonoBehaviour
         yield return StartCoroutine(DriveTowards(point));        
     }
 
+    // Orients towards, moves to the given point, then comes to a stop
+    IEnumerator StopAtPoint(Vector3 point)
+    {
+        // Drive to point
+        yield return StartCoroutine(GoToPoint(point));
+
+        // Stop when arrived
+        yield return StartCoroutine(Stay());
+    }
+
+    // Orients towards the given point
     IEnumerator TurnToFace(Vector3 point)
     {
         // Determine which way to turn
@@ -150,6 +206,7 @@ public class AIControls : MonoBehaviour
         }
     }
 
+    // Drives towards the given point whilst orienting towards it
     IEnumerator DriveTowards(Vector3 position)
     {
         float distanceToTarget = Vector3.Distance(carTrans.position, position);
@@ -174,29 +231,35 @@ public class AIControls : MonoBehaviour
         car.updateInput(0, 0);
     }
 
+    // Tries to keep velocity at 0
     IEnumerator Stay()
     {
         while(true)
         {
-            float gasInput = Brake();
+            // Calculate which direction to acclerate in (the opposite direction to which the car is moving)
+            float gasInput = CalculateGasBrake();
 
+            // Apply gas in calculated direction
             car.updateInput(0, gasInput);
 
+            // Wait til next frame
             yield return null;
         }
     }
 
+    // Drives towards whilst orienting towards the given transform
     IEnumerator Chase(Transform target)
     {
         while (true)
         {
-            float steeringInput = SteeringTowards(target.position);
-            float gasInput = GasTowards(target.position);
+            // Calculate the amount of steering and gas to apply.
+            float steeringInput = CalculateSteeringTowards(target.position);
+            float gasInput = CalculateGasTowards(target.position);
 
-            print("SteeringInput: " + steeringInput + ", GasInput: " + gasInput);
-
+            // Update car input with calculated values
             car.updateInput(steeringInput, gasInput);
 
+            // Wait til next frame
             yield return null;
         }
     }
