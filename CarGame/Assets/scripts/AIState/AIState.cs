@@ -28,6 +28,11 @@ public abstract class AIState
     public virtual void Update() {  /* Nothing */ }
 
     /// <summary>
+    /// Use DrawGizmos for any debug drawing required by each state
+    /// </summary>
+    public virtual void DrawGizmos() { /* Nothing */ }
+
+    /// <summary>
     /// Use Terminate for any logic to be executed by a state when it is ending.
     /// </summary>
     public virtual void Terminate()

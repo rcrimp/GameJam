@@ -133,9 +133,35 @@ Prefab:
       propertyPath: m_Name
       value: Car (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012900077880, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012231813828, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
     - {fileID: 114000011230691048, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - {fileID: 114000013306447126, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
+    - {fileID: 114000010309004656, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &661865380
@@ -151,7 +177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012304789636, guid: eab59e9e3ffe0ec49a3f485487024233, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.0000001493936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012304789636, guid: eab59e9e3ffe0ec49a3f485487024233, type: 2}
       propertyPath: m_LocalPosition.z
@@ -175,7 +201,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012304789636, guid: eab59e9e3ffe0ec49a3f485487024233, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab59e9e3ffe0ec49a3f485487024233, type: 2}
@@ -266,7 +292,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1041101917
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,27 +355,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
---- !u!1 &1293843783 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010039955432, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54,
-    type: 2}
-  m_PrefabInternal: {fileID: 505829920}
---- !u!114 &1293843790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1293843783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab5e53be9839864ab8f970a1899a07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaximumAngleDelta: 10
-  MaximumDistanceDelta: 1
-  target: {fileID: 0}
-  BrakeVelocity: 0.1
+  m_RootOrder: 3
 --- !u!1001 &1320806222
 Prefab:
   m_ObjectHideFlags: 0
@@ -387,8 +393,28 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011462145518, guid: 110ea1ec040f110418b6634dca8b0136, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 110ea1ec040f110418b6634dca8b0136, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1579385984 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000014127938972, guid: e0baf8d0e7fb52d4e9de2c4dc7d59f54,
+    type: 2}
+  m_PrefabInternal: {fileID: 505829920}
+--- !u!114 &1579385985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579385984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5e53be9839864ab8f970a1899a07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumAngleDelta: 10
+  MaximumDistanceDelta: 1
+  Target: {fileID: 0}
+  BrakeVelocity: 0.1

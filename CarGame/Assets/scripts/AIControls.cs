@@ -42,6 +42,12 @@ public class AIControls : MonoBehaviour
             state.Update();
     }
 
+    void OnDrawGizmos()
+    {
+        if (state != null)
+            state.DrawGizmos();
+    }
+
     /// <summary>
     /// Changes the AI's state to the given behaviour state
     /// </summary>
@@ -95,7 +101,7 @@ public class AIControls : MonoBehaviour
     public void CancelMoveCommand()
     {
         if (moveCommand != null)
-            StopCoroutine(moveCommand);
+            StopAllCoroutines();
 
         moveCommand = null;
     }
