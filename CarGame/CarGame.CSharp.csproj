@@ -63,6 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CarGame.CSharp.Plugins.csproj">
+      <Project>{447613BD-519B-46B3-807F-B544BDA1831F}</Project>
+      <Name>CarGame.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\scripts\AIBattleMode.cs" />
     <Compile Include="Assets\scripts\AIControls.cs" />
     <Compile Include="Assets\scripts\AIState\AIState.cs" />

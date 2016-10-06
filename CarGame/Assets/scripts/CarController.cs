@@ -35,7 +35,7 @@ public class CarController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
+        //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
 
         float scaledTorque = inputVer * torque;
 

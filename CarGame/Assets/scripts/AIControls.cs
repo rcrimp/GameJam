@@ -9,9 +9,13 @@ public class AIControls : MonoBehaviour
     [Tooltip("The maximum allowable distance that the AI's location can differ from a targeted vector when moving to it")]
     public float MaximumDistanceDelta = 1;
 
+    public Transform target;
+
     private CarController car;
     private Transform carTrans;
-    private Vector3 target;
+    private Vector3 clickLocation;
+
+    private Coroutine clickToMove;
 
     void Awake()
     {
@@ -19,9 +23,16 @@ public class AIControls : MonoBehaviour
         carTrans = transform.GetChild(0);
     }
 
+    void Start()
+    {
+        if (target != null)
+            Follow(target);
+    }
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Only follow clicks if there is no target
+        if (target == null && Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -30,7 +41,7 @@ public class AIControls : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
                 GoTo(hitInfo.point);
-                target = hitInfo.point;
+                clickLocation = hitInfo.point;
             }
         }
     }
@@ -42,7 +53,8 @@ public class AIControls : MonoBehaviour
             Vector3 from = carTrans.position;
             from.y += 0.5f;
 
-            Vector3 to = target;
+            // Draw line from car to target OR clickLocation
+            Vector3 to = target == null ? clickLocation : target.position;
             to.y += 0.5f;
 
             Gizmos.DrawLine(from, to);
@@ -51,14 +63,51 @@ public class AIControls : MonoBehaviour
 
     public void GoTo(Vector3 point)
     {
-        StartCoroutine(GoToPoint(point));
+        if (clickToMove != null)
+            StopCoroutine(clickToMove);
+
+        clickToMove = StartCoroutine(GoToPoint(point));
     }
 
     public void Follow(Vector3[] path)
     {
-        // foreach point in path
-            // Orient towards
-            // Move towards
+        StartCoroutine(FollowPath(path));
+    }
+
+    public void Follow(Transform target)
+    {
+        StartCoroutine(Chase(target));
+    }
+
+    private float SteeringTowards(Vector3 position)
+    {
+        // Determine which way to turn
+        Vector3 desiredDirection = position - carTrans.position;
+
+        // How different are we from desired angle
+        float angleFromDesiredDirection = Vector3.Angle(carTrans.forward, desiredDirection);
+        if (angleFromDesiredDirection < MaximumAngleDelta)
+            return 0;
+        else
+            return MathExtension.AngleDir(carTrans.forward, desiredDirection, Vector3.up);
+    }
+
+    private float GasTowards(Vector3 position)
+    {
+        // Determine which way to turn
+        Vector3 desiredDirection = position - carTrans.position;
+
+        // How close are we to the given facing?
+        float angleFromDesiredDirection = Vector3.Angle(carTrans.forward, desiredDirection);
+
+        return angleFromDesiredDirection > 90 ? -1 : 1;
+    }
+
+    IEnumerator FollowPath(Vector3[] path)
+    {
+        // Go to each point in path
+        foreach (Vector3 point in path)
+            yield return StartCoroutine(GoToPoint(point));
     }
 
     IEnumerator GoToPoint(Vector3 point)
@@ -100,7 +149,6 @@ public class AIControls : MonoBehaviour
         {
             Vector3 desiredDirection = position - carTrans.position;
             float angleDirection = MathExtension.AngleDir(carTrans.forward, desiredDirection, Vector3.up);
-            print(angleDirection);
 
             // Orient towards, full gas!
             car.updateInput(angleDirection, 1);
@@ -112,7 +160,22 @@ public class AIControls : MonoBehaviour
             distanceToTarget = Vector3.Distance(carTrans.position, position);
         }
 
-        // Stop applying gas
+        // Stop applying gas (car will continue to drift)
         car.updateInput(0, 0);
+    }
+
+    IEnumerator Chase(Transform target)
+    {
+        while (true)
+        {
+            float steeringInput = SteeringTowards(target.position);
+            float gasInput = GasTowards(target.position);
+
+            print("SteeringInput: " + steeringInput + ", GasInput: " + gasInput);
+
+            car.updateInput(steeringInput, gasInput);
+
+            yield return null;
+        }
     }
 }
