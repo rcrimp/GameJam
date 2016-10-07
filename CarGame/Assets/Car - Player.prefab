@@ -513,7 +513,6 @@ GameObject:
   - 114: {fileID: 114000014015412964}
   - 114: {fileID: 114000013681110070}
   - 114: {fileID: 114000013136728618}
-  - 114: {fileID: 114000010552063822}
   m_Layer: 0
   m_Name: Car - Player
   m_TagString: Untagged
@@ -1693,18 +1692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelCollider: {fileID: 146000012824441568}
---- !u!114 &114000010552063822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013999558300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca98c9d71420781429032a419dde4b01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraObject: {fileID: 1000010124223588}
 --- !u!114 &114000011027315718
 MonoBehaviour:
   m_ObjectHideFlags: 1

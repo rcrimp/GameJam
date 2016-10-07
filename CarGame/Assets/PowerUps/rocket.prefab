@@ -25,6 +25,7 @@ GameObject:
   - 65: {fileID: 65000013506934022}
   - 54: {fileID: 54000013851524832}
   - 75: {fileID: 75000010110877142}
+  - 114: {fileID: 114000010924016932}
   m_Layer: 0
   m_Name: rocket
   m_TagString: Untagged
@@ -137,3 +138,16 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010924016932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013497966130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44b699eeec191d429ff5ed3312b1f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1000010982828154, guid: c5a1b5c507ed8ac4691204f27937d9a6,
+    type: 2}
