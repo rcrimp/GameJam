@@ -13,9 +13,8 @@ public class GainMissiles : Powerup {
 
     void OnTriggerEnter(Collider collider)
     {
-        NotifyOnPickup();//notify's any listeners that the powerup has been picked up
-
         GameObject collidingObject = collider.gameObject; //saves a ref to the colliding object's gameobject (for later readability)
+        NotifyOnPickup(collidingObject);//notify's any listeners that the powerup has been picked up
                        
         collidingObject.AddComponent<RocketLauncher>(); //adds a rocket launcher script to the colliding game object
         RocketLauncher launcher = collidingObject.GetComponent<RocketLauncher>(); //saves ref to the new rocket launcher
