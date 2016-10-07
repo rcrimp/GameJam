@@ -63,7 +63,7 @@ public class RocketLauncher : MonoBehaviour {
         Quaternion rotation = transform.rotation;
         rotation *= Quaternion.Euler(0, 180, 0); // this add a 180 degrees Y rotation
 
-        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), rotation) as GameObject;
+        GameObject currentRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 1.5f, 0)), rotation) as GameObject;
         currentRocket.GetComponent<Rigidbody>().isKinematic = false;
         currentRocket.GetComponent<ConstantForce>().enabled = true;
         currentRocket.GetComponent<BoxCollider>().enabled = true;

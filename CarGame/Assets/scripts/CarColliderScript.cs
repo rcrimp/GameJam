@@ -17,6 +17,10 @@ public class CarColliderScript : MonoBehaviour {
     {
         Debug.Log(car.gameObject.name + "Just entered the box collider ");
 
-        car.GetComponent<AIControls>().Follow(next.transform);//.target = next.transform;
+        if(car.GetComponent<AIControls>() != null)
+        {
+            car.GetComponent<AIControls>().Follow(next.transform);//.target = next.transform;
+        }
+        
     }
 }
