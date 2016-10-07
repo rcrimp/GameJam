@@ -17,11 +17,11 @@ public class SpawnChasers : MonoBehaviour {
             if (first == null) first = curr;
             if (prev != null)
             {
-                prev.GetComponent<AIControls>().target = curr.transform;
+                prev.GetComponent<AIControls>().Follow(curr.transform);
             }
             prev = curr;
         }
-        prev.GetComponent<AIControls>().target = first.transform;
+        prev.GetComponent<AIControls>().Follow(first.transform);
 	}
 	
 	// Update is called once per frame
