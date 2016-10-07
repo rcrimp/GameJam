@@ -70,15 +70,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CarCamera\CarCam.cs" />
+    <Compile Include="Assets\PowerUps\ClickToExplode.cs" />
+    <Compile Include="Assets\PowerUps\Explosion.cs" />
     <Compile Include="Assets\PowerUps\GainMissiles.cs" />
     <Compile Include="Assets\PowerUps\Powerup.cs" />
     <Compile Include="Assets\PowerUps\PowerupRotation.cs" />
     <Compile Include="Assets\PowerUps\PowerupSpawner.cs" />
+    <Compile Include="Assets\PowerUps\Rocket.cs" />
     <Compile Include="Assets\PowerUps\RocketLauncher.cs" />
     <Compile Include="Assets\PowerUps\SpeedBoost.cs" />
     <Compile Include="Assets\scripts\AIBattleMode.cs" />
     <Compile Include="Assets\scripts\AIControls.cs" />
     <Compile Include="Assets\scripts\AIState\AIState.cs" />
+    <Compile Include="Assets\scripts\AIState\ChaseTarget.cs" />
+    <Compile Include="Assets\scripts\AIState\ClickToMove.cs" />
     <Compile Include="Assets\scripts\AIState\EvasiveManoeuvres.cs" />
     <Compile Include="Assets\scripts\AIState\FindPowerUp.cs" />
     <Compile Include="Assets\scripts\AIState\HuntEnemy.cs" />

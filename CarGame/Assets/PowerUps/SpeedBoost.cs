@@ -7,7 +7,7 @@ public class SpeedBoost : Powerup
 
     void OnTriggerEnter(Collider collider)
     {
-        NotifyOnPickup(); //notify's any listeners that the powerup has been picked up
+        NotifyOnPickup(collider.gameObject); //notify's any listeners that the powerup has been picked up
      
         collider.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speedIncrease);//adds force to colliding object
         Destroy(this.gameObject); //destroys powerup 
