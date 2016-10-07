@@ -47,7 +47,7 @@ public class PowerupSpawner : MonoBehaviour {
         powerUp.GetComponent<Powerup>().PickedUp += PowerupSpawner_PickedUp;
     }
 
-    private void PowerupSpawner_PickedUp(object sender, System.EventArgs e)
+    private void PowerupSpawner_PickedUp(object sender, PickupEventArgs e)
     {
         //when a power up is expended, remember its location, wait for a bit, then create another powerup there
         Powerup expendedPowerUp = (Powerup)sender;

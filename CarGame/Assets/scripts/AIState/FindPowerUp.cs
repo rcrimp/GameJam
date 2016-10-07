@@ -50,6 +50,9 @@ public class FindPowerUp : AIState
         if (closestPowerup == null)
             return false;
 
+        // Listen for when the powerup is removed
+        closestPowerup.GetComponent<Powerup>().PickedUp += Powerup_Removed;
+
         // Set closest powerup as target
         targetPowerUp = closestPowerup;
 
@@ -67,15 +70,25 @@ public class FindPowerUp : AIState
     /// <summary>
     /// Event raised when THIS car picks up a powerup
     /// </summary>
-    private void Powerup_PickedUp(object sender, EventArgs e)
+    private void Powerup_PickedUp(object sender, PickupEventArgs e)
     {
-        // Switch to hunt enemies mode
+        // IF powerup is a rocket launcher:
+        if (sender is RocketLauncher)
+            ai.SetState(new HuntEnemy(ai, car));            // Switch to hunt enemies mode
+
+        else
+        {
+            // Find the closest powerup and move towards it when a path has been calculated
+            bool powerupFound = MoveToClosestPowerup();
+            if (powerupFound == false)  // Switch to evasive manoeuvres until a powerup is available
+                ai.SetState(new EvasiveManoeuvres(ai, car));
+        }
     }
 
     /// <summary>
     /// Event raised when the powerup targeted by this ai is removed (picked up by another car, destroyed etc)
     /// </summary>
-    private void Powerup_Removed(object sender, EventArgs e)
+    private void Powerup_Removed(object sender, PickupEventArgs e)
     {
         // Target no longer valid, delete reference
         targetPowerUp = null;

@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class ClickToMove : AIState
 {
-    // TODO: find a path to location
-
-    private Vector3 clickLocation;
+    private Vector3[] path;
 
     public ClickToMove(AIControls ai, CarController car)
         : base(ai, car) { /* Nothing */ }
@@ -27,17 +25,31 @@ public class ClickToMove : AIState
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                clickLocation = hitInfo.point;
-                ai.GoTo(hitInfo.point);     // Go to location
+                Vector3 clickLocation = hitInfo.point;
+
+                // Calculate a path
+                NavMeshPath navMeshPath = new NavMeshPath();
+                NavMesh.CalculatePath(car.transform.position, clickLocation, NavMesh.AllAreas, navMeshPath);
+
+                // Save path (so can draw gizmos)
+                path = navMeshPath.corners;
+                ai.Follow(path);        // Tell ai to follow path
             }
         }
     }
 
+    // Draws lines between each point in path
     public override void DrawGizmos()
     {
         base.DrawGizmos();
 
-        Gizmos.DrawLine(car.transform.position, clickLocation);
+        // If there is a path, draw it
+        if (path != null)
+        {
+            // Connect the dots...
+            for (int i = 0; i < path.Length - 1; i++)
+                Gizmos.DrawLine(path[i], path[i + 1]);
+        }
     }
 }
 

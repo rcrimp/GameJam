@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum AIMode
+{
+    BattleMode,         // AI will automate its behaviour: picking up and using powerups
+    ClickToMove,        // AI will move to clicked position
+    Avoid,              // AI will avoid other cars
+    None                // AI is waiting to take commands via script
+}
+
 [RequireComponent(typeof(CarController))]
 public class AIControls : MonoBehaviour
 {
@@ -8,13 +16,22 @@ public class AIControls : MonoBehaviour
     public float MaximumAngleDelta = 10;
 
     [Tooltip("The maximum allowable distance that the AI's location can differ from a targeted vector when moving to it")]
-    public float MaximumDistanceDelta = 1;
+    public float MaximumDistanceDelta = 1.5f;
 
-    [Tooltip("The target that this ai will chase. If none is specified, the ai will move to a clicked location")]
-    public Transform Target;
+    [Tooltip("The target that this ai will chase.")]
+    public Transform InitialTarget;
 
     [Tooltip("The maximum velocity at which the ai will count as stationary when braking")]
     public float BrakeVelocity = 0.1f;
+
+    [Tooltip("How much gas to apply when orienting towards a position")]
+    public float OrientGas = 0.25f;
+
+    [Tooltip("The distance this ai will try to maintain when avoiding another car")]
+    public float SafeDistance = 10;
+
+    [Tooltip("")]
+    public AIMode InitialMode = AIMode.None;
 
     private AIState state;              // The behaviour state the AI is currently in
     private Coroutine moveCommand;      // Whether the car is currently moving to a clicked location
@@ -27,13 +44,25 @@ public class AIControls : MonoBehaviour
         carTrans = transform.GetChild(0);
     }
 
-    // Starts following target
+    // Choose behaviour based on initial mode
     void Start()
     {
-        if (Target != null)
-            SetState(new ChaseTarget(this, car, Target));
-        else
-            SetState(new ClickToMove(this, car));
+        switch (InitialMode)
+        {
+            case AIMode.BattleMode:
+                SetState(new FindPowerUp(this, car));
+                break;
+            case AIMode.ClickToMove:
+                SetState(new ClickToMove(this, car));
+                break;
+            case AIMode.Avoid:
+                SetState(new EvasiveManoeuvres(this, car));
+                break;
+            case AIMode.None:
+                if (InitialTarget != null)              // So racing track test still works
+                    Follow(InitialTarget);
+                break;
+        }
     }
 
     void Update()
@@ -98,6 +127,19 @@ public class AIControls : MonoBehaviour
         moveCommand = StartCoroutine(Chase(target));
     }
 
+    /// <summary>
+    /// AI car attempts to maintain a safe distance between itself and the given target
+    /// </summary>
+    public void Avoid(Transform target)
+    {
+        CancelMoveCommand();
+
+        moveCommand = StartCoroutine(MaintainDistance(target));
+    }
+
+    /// <summary>
+    /// Cancels the move command the ai is currently carrying out
+    /// </summary>
     public void CancelMoveCommand()
     {
         if (moveCommand != null)
@@ -120,7 +162,7 @@ public class AIControls : MonoBehaviour
             return MathExtension.AngleDir(carTrans.forward, desiredDirection, Vector3.up);
     }
 
-    // Calculates which direction to accelerate in when moving towards the given position. SHould be used in conjunction
+    // Calculates which direction to accelerate in when moving towards the given position. Should be used in conjunction
     // with CalculateSteeringTowards
     private float CalculateGasTowards(Vector3 position)
     {
@@ -159,11 +201,14 @@ public class AIControls : MonoBehaviour
     // Orients towards then moves to the given point
     IEnumerator GoToPoint(Vector3 point)
     {
-        // Orient towards point
-        yield return StartCoroutine(TurnToFace(point));
+        if (Vector3.Distance(carTrans.position, point) > MaximumDistanceDelta)
+        {
+            // Orient towards point
+            yield return StartCoroutine(TurnToFace(point));
 
-        // Drive forwards the required distance
-        yield return StartCoroutine(DriveTowards(point));        
+            // Drive forwards the required distance
+            yield return StartCoroutine(DriveTowards(point));
+        }
     }
 
     // Orients towards, moves to the given point, then comes to a stop
@@ -188,7 +233,7 @@ public class AIControls : MonoBehaviour
         while (angleFromDesiredDirection > MaximumAngleDelta)
         {
             // Full steering, minimal gas
-            car.updateInput(angleDirection, 0.1f);
+            car.updateInput(angleDirection, OrientGas);
 
             // Wait til next frame
             yield return null;
@@ -247,6 +292,25 @@ public class AIControls : MonoBehaviour
             // Calculate the amount of steering and gas to apply.
             float steeringInput = CalculateSteeringTowards(target.position);
             float gasInput = CalculateGasTowards(target.position);
+
+            // Update car input with calculated values
+            car.updateInput(steeringInput, gasInput);
+
+            // Wait til next frame
+            yield return null;
+        }
+    }
+
+    IEnumerator MaintainDistance(Transform target)
+    {
+        while (true)
+        {
+            Vector3 safeDirection = (carTrans.position - target.position).normalized;
+            Vector3 safePoint = target.position + (safeDirection * SafeDistance);
+
+            // Calculate the amount of steering and gas to apply.
+            float steeringInput = CalculateSteeringTowards(safePoint);
+            float gasInput = CalculateGasTowards(safePoint);
 
             // Update car input with calculated values
             car.updateInput(steeringInput, gasInput);
