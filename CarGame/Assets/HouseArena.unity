@@ -528,6 +528,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 63873434}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -679,6 +684,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 809523009}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1641717088}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -1137,6 +1147,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1202712765}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1202712765}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -1471,6 +1486,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 809523009}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1641717088}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -1723,54 +1743,44 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalPosition.x
       value: -41.2
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalPosition.y
       value: -0.909999
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalPosition.z
       value: -50.9
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012927014514, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    - target: {fileID: 4000010380400202, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 82000012870587852, guid: a3c1b82083f6dfc44bcf674611eaeb20,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f77ad54c97b80f54dba56934bdc87f6d, type: 3}
-    - target: {fileID: 82000012870587852, guid: a3c1b82083f6dfc44bcf674611eaeb20,
-        type: 2}
-      propertyPath: m_Volume
-      value: 1
+    - target: {fileID: 1000014203152206, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
+      propertyPath: m_Name
+      value: Car - Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000014015412964, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
-    - {fileID: 114000013136728618, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
-    - {fileID: 114000010552063822, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
-    - {fileID: 114000010043889340, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: a3c1b82083f6dfc44bcf674611eaeb20, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a434c0edab67bad49bdbe549ec298373, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &832121791
 GameObject:
@@ -2007,6 +2017,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 809523009}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1641717088}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -2060,6 +2075,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1202712765}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1202712765}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -2111,6 +2131,11 @@ Prefab:
     - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
         type: 2}
       propertyPath: target
+      value: 
+      objectReference: {fileID: 1202712765}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
       value: 
       objectReference: {fileID: 1202712765}
     m_RemovedComponents:
@@ -2435,6 +2460,11 @@ Prefab:
       propertyPath: m_Name
       value: Car - Chase (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 63873434}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -2847,6 +2877,11 @@ Prefab:
     - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
         type: 2}
       propertyPath: target
+      value: 
+      objectReference: {fileID: 1202712765}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
       value: 
       objectReference: {fileID: 1202712765}
     m_RemovedComponents:
@@ -4410,6 +4445,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 809523009}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 1641717088}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
@@ -4533,6 +4573,11 @@ Prefab:
       propertyPath: m_Name
       value: Car - Chase (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013986456470, guid: 36ccd9466b676554b93d92ffa82ed39b,
+        type: 2}
+      propertyPath: InitialTarget
+      value: 
+      objectReference: {fileID: 63873434}
     m_RemovedComponents:
     - {fileID: 114000012514217366, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
     - {fileID: 114000012984732224, guid: 36ccd9466b676554b93d92ffa82ed39b, type: 2}
