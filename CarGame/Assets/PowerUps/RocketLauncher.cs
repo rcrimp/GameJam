@@ -14,6 +14,8 @@ public class RocketLauncher : MonoBehaviour {
     public int nRemainingMissiles { get; private set; }
     private GameObject displayRocket;
 
+    private float reloadDelayInSeconds = 0.5f;
+    private bool reloading = false;
 
     // Use this for initialization
     void Start()
@@ -24,16 +26,18 @@ public class RocketLauncher : MonoBehaviour {
         Quaternion rotation = transform.rotation;
         rotation *= Quaternion.Euler(0, 180, 0); // this add a 180 degrees Y rotation
 
-        displayRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2.5f, 0)), rotation, transform) as GameObject;
+        displayRocket = Instantiate(rocketPrefab, (transform.position + new Vector3(0, 2f, 0)), rotation, transform) as GameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(!reloading)
         {
-            Shoot();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot();
+            }
         }
 
         if (nRemainingMissiles == 0)
@@ -41,6 +45,13 @@ public class RocketLauncher : MonoBehaviour {
             Destroy(displayRocket);
             Destroy(GetComponent<RocketLauncher>());
         }
+    }
+
+    IEnumerator ReloadDelay()
+    {
+        reloading = true;
+        yield return new WaitForSeconds(reloadDelayInSeconds);
+        reloading = false;
     }
 
     public void Shoot()
@@ -56,4 +67,6 @@ public class RocketLauncher : MonoBehaviour {
         currentRocket.GetComponent<ConstantForce>().enabled = true;
         currentRocket.GetComponent<BoxCollider>().enabled = true;
     }
+
+
 }
