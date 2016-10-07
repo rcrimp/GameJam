@@ -140,5 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 1000013497966130, guid: 5ca1cda5ac21937429c203be011da1b2,
     type: 2}
+  burgerPrefab: {fileID: 100000, guid: f247e36b2a4e784439ac31ad8a339ed0, type: 3}
   powerUpPrefab: {fileID: 1000013174568174, guid: 7809ab3688507b04ea16207636ac30aa,
     type: 2}
+  powerupRespawnDelay: 5

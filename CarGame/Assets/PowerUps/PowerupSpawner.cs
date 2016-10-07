@@ -8,6 +8,7 @@ public class PowerupSpawner : MonoBehaviour {
     /// </summary>
     
     public GameObject rocketPrefab;
+    public GameObject burgerPrefab;
     public GameObject powerUpPrefab;
     public float powerupRespawnDelay = 5;
     
@@ -30,14 +31,18 @@ public class PowerupSpawner : MonoBehaviour {
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, spawnpoint, Quaternion.identity);
 
         //gives the prefab a random power
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 3);
+
         switch (rand)
         {
             case 0:
-                //CreateSpeedBoost(powerUp);
-                //break;
+                CreateSpeedBoost(powerUp);
+                break;
             case 1:
                 CreateGainMissiles(powerUp);
+                break;
+            case 2:
+                CreateBurger(powerUp);
                 break;
             default:
                 break;
@@ -67,6 +72,13 @@ public class PowerupSpawner : MonoBehaviour {
         GainMissiles gainMissiles = powerUp.GetComponent<GainMissiles>();//(Makes the next few lines easier to read)
         gainMissiles.nMissiles = 5;
         gainMissiles.rocketPrefab = rocketPrefab;
+    }
+
+    public void CreateBurger(GameObject powerUp)
+    {
+        powerUp.AddComponent<Burger>();
+        Burger burger = powerUp.GetComponent<Burger>();
+        burger.burgerPrefab = burgerPrefab;
     }
   
     IEnumerator SpawnAfterDelay(Vector3 location, float delayInSeconds)
