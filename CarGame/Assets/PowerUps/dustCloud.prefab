@@ -473,3 +473,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   force: 2000000
+  durationInSeconds: 1
