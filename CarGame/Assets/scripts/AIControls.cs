@@ -30,7 +30,10 @@ public class AIControls : MonoBehaviour
     [Tooltip("The distance this ai will try to maintain when avoiding another car")]
     public float SafeDistance = 10;
 
-    [Tooltip("")]
+    [Tooltip("The angle of the frontal arc within which the ai will try to shoot enemies")]
+    public float AttackArc = 10;
+
+    [Tooltip("The beahviour the car will exhibit. Use 'None' to instead control the car via script commands")]
     public AIMode InitialMode = AIMode.None;
 
     private AIState state;              // The behaviour state the AI is currently in

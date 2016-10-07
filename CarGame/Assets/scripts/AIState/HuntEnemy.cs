@@ -30,14 +30,18 @@ public class HuntEnemy : AIState
             ai.Follow(target);           // Chase new closest car
         }
 
+        if (InCrosshair(target.position))
+        {
+            ai.GetComponent<RocketLauncher>().Shoot();
+        }
+    }
+
+    public bool InCrosshair(Vector3 target)
+    {
         // Angle from car's facing to the desired facing
-        Vector3 desiredFacing = car.transform.position - target.position;
+        Vector3 desiredFacing = target - car.transform.position;
         float angleToTarget = Vector3.Angle(car.transform.forward, desiredFacing);
 
-
-        if (angleToTarget < 10)
-        {
-            // TODO: FIRE ZE MISSILES!
-        }
+        return angleToTarget < ai.AttackArc;
     }
 }
