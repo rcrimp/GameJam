@@ -34,8 +34,8 @@ public class PowerupSpawner : MonoBehaviour {
         switch (rand)
         {
             case 0:
-                CreateSpeedBoost(powerUp);
-                break;
+                //CreateSpeedBoost(powerUp);
+                //break;
             case 1:
                 CreateGainMissiles(powerUp);
                 break;

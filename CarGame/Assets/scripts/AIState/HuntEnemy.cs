@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class HuntEnemy : AIState
 {
+    private RocketLauncher launcher;
     private IEnumerable<Transform> cars;
     private Transform target;
 
     public HuntEnemy(AIControls ai, CarController car)
-        : base(ai, car) { /* Nothing */ }
+        : base(ai, car)
+    {
+        launcher = ai.GetComponent<RocketLauncher>();
+    }
 
     public override void Update()
     {
@@ -30,10 +34,13 @@ public class HuntEnemy : AIState
             ai.Follow(target);           // Chase new closest car
         }
 
+        // Out of ammo, find another power up
+        if (launcher.nRemainingMissiles == 0)
+            ai.SetState(new FindPowerUp(ai, car));
+
+        // Target in firing arc... ANNIHILATE!
         if (InCrosshair(target.position))
-        {
-            ai.GetComponent<RocketLauncher>().Shoot();
-        }
+            launcher.Shoot();
     }
 
     public bool InCrosshair(Vector3 target)

@@ -11,7 +11,7 @@ public class RocketLauncher : MonoBehaviour {
     public int nMissiles;
     public GameObject rocketPrefab;
 
-    private int nRemainingMissiles;
+    public int nRemainingMissiles { get; private set; }
     private GameObject displayRocket;
 
 
@@ -34,7 +34,6 @@ public class RocketLauncher : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
-            nRemainingMissiles--;
         }
 
         if (nRemainingMissiles == 0)
@@ -46,6 +45,8 @@ public class RocketLauncher : MonoBehaviour {
 
     public void Shoot()
     {
+        nRemainingMissiles--;
+
         //hack fix: not sure why, but missiles and car's have opposite y facing. this is my hack fix for that.
         Quaternion rotation = transform.rotation;
         rotation *= Quaternion.Euler(0, 180, 0); // this add a 180 degrees Y rotation
