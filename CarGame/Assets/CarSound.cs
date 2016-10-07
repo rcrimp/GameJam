@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CarSound : MonoBehaviour {
 
-    AudioSource audio;
+    new AudioSource audio;
     Vector3 lastPosition = Vector3.zero;
     public float speed;
 
