@@ -11,7 +11,7 @@ public class RocketLauncher : MonoBehaviour {
     public int nMissiles;
     public GameObject rocketPrefab;
 
-    public int nRemainingMissiles { get; private set; }
+    public int nRemainingMissiles { get; set; }
     private GameObject displayRocket;
 
     private float reloadDelayInSeconds = 0.75f;

@@ -7,10 +7,13 @@ public class Burger : Powerup
 
     void OnTriggerEnter(Collider collider)
     {
-        collider.gameObject.AddComponent<BecomeABurgerForABit>();
-        collider.gameObject.GetComponent<BecomeABurgerForABit>().burgerPrefab = burgerPrefab;
-            
-        NotifyOnPickup(collider.gameObject);
-        Destroy(this.gameObject); //destroys powerup        
+        if (collider.gameObject.tag == "Car")
+        {
+            collider.gameObject.AddComponent<BecomeABurgerForABit>();
+            collider.gameObject.GetComponent<BecomeABurgerForABit>().burgerPrefab = burgerPrefab;
+
+            NotifyOnPickup(collider.gameObject);
+            Destroy(this.gameObject); //destroys powerup       
+        } 
     }
 }
